@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ToDo\StoreToDoRequest;
 use App\Http\Requests\ToDo\UpdateToDoRequest;
+use App\Http\Resources\DeadLineResource;
 use App\Http\Resources\ToDoResource;
 use App\Models\ToDo;
 
+use Carbon\Carbon;
+use Date;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 
@@ -22,11 +25,42 @@ class ToDoController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(): JsonResponse
+    public function index()
     {
-        $toDo = $this->toDo->orderBy('order', 'desc')->get();
+        $toDos = $this->toDo->orderBy('order', 'desc')->get();
 
-        return response()->json(ToDoResource::collection($toDo), Response::HTTP_OK);
+        return response()->json(ToDoResource::collection($toDos), Response::HTTP_OK);
+    }
+
+    public function deadLine(): JsonResponse  {
+
+        $deadline = [
+            'OnTime' => 0, 
+            'NearDeadline' => 0, 
+            'Overdue' => 0
+        ];
+
+        $toDos = $this->toDo->orderBy('order', 'desc')->get();
+
+        $dateCurrent = date('Y-m-d', strtotime('now'));
+
+        foreach ($toDos as $toDo) {
+            if($toDo['due_date'] > $dateCurrent) {
+                if(date('Y-m-d', 
+                strtotime('-1 day', strtotime($toDo['due_date']))) == $dateCurrent) 
+                {
+                    $deadline['NearDeadline']++;
+                }
+                else {
+                    $deadline['OnTime']++;
+                }
+            }
+            else {
+                $deadline['Overdue']++;
+            }
+        }
+
+        return response()->json($deadline, Response::HTTP_OK);
     }
 
     /**

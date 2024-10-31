@@ -13,6 +13,7 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::apiResource('/toDos', ToDoController::class);
+Route::get('/deadline', [ToDoController::class, 'deadline']);
 
 Route::get('/', function () {
     return ['Laravel' => app()->version()];

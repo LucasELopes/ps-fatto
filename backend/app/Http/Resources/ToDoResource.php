@@ -20,7 +20,8 @@ class ToDoResource extends JsonResource
             'name' => $this->name,
             'cost' => $this->cost,
             'due_date' => $this->due_date,
-            'order' => $this->order
+            'order' => $this->order,
+            
         ];
         
     }
