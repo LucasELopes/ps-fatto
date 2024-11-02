@@ -1,5 +1,6 @@
 import { allToDo } from "@/actions/toDo";
 import { toDoType } from "@/types/toDo"
+import Image from "next/image";
 import { useEffect, useState } from "react";
 
 const ListToDos = () => {
@@ -12,72 +13,64 @@ const ListToDos = () => {
     },[])
 
     return (
-        <div className="w-6/12 h-full">
-            {toDos.length > 0 &&
-                <div className="grid grid-cols-5 gap-2 text-center">
-                    <div className="col-span-1">
-                        ID {/*  
-                                O respectivo id (indíce do array das tarefas) é apenas visual, 
-                                pois no backend é utilizado uuId, entretanto para ficar mais agradável de se ver o id foi utilizado.
-                            */}
-                    </div>
-                    <div className="col-span-2">
-                        Nome
-                    </div>
-                    <div className="col-span-1">
-                        Custo
-                    </div>
-                    <div className="col-span-1">
-                        Data limite
-                    </div>
-                    {   
-                        toDos.map((toDo, index) => (
-                            <div key={toDo.id} className="col-span-5 grid grid-cols-5 my-2">
-                                <div className="col-span-1 text-nowrap text-ellipsis overflow-hidden">
-                                    {index}
-                                </div>
-                                <div className="col-span-2 text-nowrap text-ellipsis overflow-hidden">
-                                    {toDo.name}
-                                </div>
-                                <div className="col-span-1 text-nowrap text-ellipsis overflow-hidden">
-                                    {toDo.cost}
-                                </div>
-                                <div className={
-                                        `col-span-1 text-nowrap text-ellipsis overflow-hidden font-medium
-                                        ${
-                                            currentDate > new Date(toDo.due_date) ? 'text-red-400 font-bold' : 
-                                            new Date(toDo.due_date).getTime() - currentDate.getTime() <= 86400000  ? 'text-yellow-400 font-bold' : 'text-green-400'
-                                        }`
-                                }>
-                                    {new Date(toDo.due_date).toLocaleDateString()}
-                                </div>
+        <div>
+            {toDos && toDos.map((toDo, index) => (
+                <div key={toDo.id} className="w-full h-full grid grid-cols-11 gap-2 p-2">
+                    <div className="col-span-1"></div>
+                    <div className={`
+                        ${toDo.cost < 1000 ? 'bg-indigo-100' : 'bg-indigo-300'} 
+                        col-span-9 rounded-xl hover:scale-105 
+                        outline-2 hover:outline-indigo-400 hover:outline 
+                        transition-all duration-200 p-2 grid grid-cols-12
+                        shadow-md 
+                    `}>
+                        <div className="col-span-3 overflow-hidden">
+                            <div className="w-4/12 text-sm text-gray-400 overflow-hidden text-ellipsis font-bold">
+                                #{index}
                             </div>
-                        ))
-                    }
-                </div> 
-            }
-            {/* <table>
-                <thead>
-                    <tr>
-                        <th>Identificador</th>
-                        <th>Nome</th>
-                        <th>Custo</th>
-                        <th>Data limite</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        toDos.map((toDo, index) => (
-                            <tr key={toDo.id}>
-                                <th>{index}</th>
-                                <td>{toDo.name}</td>
-                                <td>{toDo.cost}</td>
-                                <td>{new Date(toDo.due_date).toLocaleDateString()}</td>
-                            </tr>
-                        ))
-                    }
-                </tbody>
-            </table> */}
+                            <div className="text-ellipsis overflow-hidden text-nowrap text-center">
+                                {toDo.name}
+                            </div>
+                        </div>
+                        <div className="col-span-5">
+                            <div className="text-sm text-gray-400 text-ellipsis font-bold">
+                                Descrição
+                            </div>
+                            <div className="overflow-hidden text-nowrap text-ellipsis text-center">
+                                Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
+                            </div>
+                        </div>
+                        <div className="col-span-2">
+                            <div className="text-sm text-gray-400 text-ellipsis font-bold">
+                                Custo
+                            </div>
+                            <div className="overflow-hidden text-nowrap text-center">
+                                R$ {toDo.cost}
+                            </div>
+                        </div>
+                        <div className="col-span-2 flex items-center justify-center gap-x-3">
+                            <div>
+                                <Image
+                                    className="cursor-pointer"
+                                    src={'/editing.png'}
+                                    alt="add"
+                                    width={25}
+                                    height={10}
+                                />
+                            </div>
+                            <div>
+                                <Image
+                                    className="cursor-pointer"
+                                    src={'/delete.png'}
+                                    alt="add"
+                                    width={25}
+                                    height={10}
+                                />
+                            </div>
+                        </div>            
+                    </div>
+                </div>
+            ))}
         </div>
     )
 

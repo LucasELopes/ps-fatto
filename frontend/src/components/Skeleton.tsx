@@ -10,9 +10,9 @@ type Props = {
 
 const Skeleton = ({children}: Props) => {
     return (
-        <div className="grid grid-cols-12">
+        <div className="grid grid-cols-12 h-screen">
             <div className="col-span-1">
-                <SideBar image="/logoSite.png"></SideBar>
+                <SideBar iconSite="/logoSite.png" imageChart="/pie-chart.png"></SideBar>
             </div>
             <div className="col-span-11 row-span-6">
                 <Header></Header>

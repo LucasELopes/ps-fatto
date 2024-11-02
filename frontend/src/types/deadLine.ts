@@ -1,5 +1,5 @@
 export type deadLineType = {
-    OnTime: number,
-    NearDeadLine: number,
-    Overdue: number
+    onTime: number,
+    nearDeadLine: number,
+    overdue: number
 }

@@ -35,12 +35,12 @@ class ToDoController extends Controller
     public function deadLine(): JsonResponse  {
 
         $deadline = [
-            'OnTime' => 0, 
-            'NearDeadline' => 0, 
-            'Overdue' => 0
+            'onTime' => 0, 
+            'nearDeadLine' => 0, 
+            'overdue' => 0
         ];
 
-        $toDos = $this->toDo->orderBy('order', 'desc')->get();
+        $toDos = $this->toDo->all();
 
         $dateCurrent = date('Y-m-d', strtotime('now'));
 
@@ -49,14 +49,14 @@ class ToDoController extends Controller
                 if(date('Y-m-d', 
                 strtotime('-1 day', strtotime($toDo['due_date']))) == $dateCurrent) 
                 {
-                    $deadline['NearDeadline']++;
+                    $deadline['nearDeadLine']++;
                 }
                 else {
-                    $deadline['OnTime']++;
+                    $deadline['onTime']++;
                 }
             }
             else {
-                $deadline['Overdue']++;
+                $deadline['overdue']++;
             }
         }
 

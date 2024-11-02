@@ -8,19 +8,14 @@ import { deadLineType } from "@/types/deadLine";
 
 
 export default function Home() {
-  
-  const [deadline, setDeadLine] = useState<deadLineType>() 
-
-  useEffect(
-    () => {
-      getDeadLines()
-      .then((data) => setDeadLine(data))
-    }, [])
 
   return (
-    <div className="flex justify-end items-center h-full">
-        <Charts deadlines={deadline}/>
+
+    <div className="grid gap-2 bg-indigo-50 h-full">
+      <div className="p-4">
         <ListToDos/>
+      </div>
     </div>
+
   )
 }

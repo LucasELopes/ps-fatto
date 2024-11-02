@@ -14,7 +14,6 @@ export async function allToDo(): Promise<toDoType[]> {
 }
 
 export async function getDeadLines(): Promise<deadLineType> {
-
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/deadline`)
 
     if(!res.ok) {
