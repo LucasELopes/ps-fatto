@@ -5,12 +5,15 @@ import { useEffect, useState } from "react";
 import CardToDo from "./CardToDo";
 import { useSearchToDoContext } from "@/app/contexts/SearchToDoContext";
 import Link from "next/link";
+import Loading from "@/components/Loading";
+import { useHandleModalContext } from "@/app/contexts/HandleModalContext";
 
 const ListToDos = () => {
     const { keyTodo, setKeyToDo } = useSearchToDoContext();
     
     const [toDos, setToDos] = useState<toDoType[]>([]);
     const [toDosShow, setToDosShow] = useState<toDoType | null>(null);
+    const [loading, setLoading] = useState<boolean>(true)
 
     useEffect(() => {
         if (!keyTodo) {
@@ -18,6 +21,7 @@ const ListToDos = () => {
         } else {
             searchToDo(keyTodo).then((data) => setToDosShow(data));
         }
+        setLoading(false)
     }, [keyTodo]);
 
     if (keyTodo && toDosShow) {
@@ -41,7 +45,7 @@ const ListToDos = () => {
         );
     }
 
-    if(!keyTodo && toDos.length === 0 && !toDosShow) {
+    if(keyTodo && toDos.length === 0 && !toDosShow && !loading) {
         return (
             <div className="
             overflow-y-hidden w-[calc(100vw-3.5rem)] md:w-[calc(100vw-6%)] h-[calc(100vh-6rem)] 
@@ -54,12 +58,14 @@ const ListToDos = () => {
             </div>
         );
     }
+
+    if(loading) {
+        return (
+            <Loading/>
+        );
+    }
     
-    return (
-        <div>
-            adada
-        </div>
-    )
+
 }
 
 export default ListToDos;

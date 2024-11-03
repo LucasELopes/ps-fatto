@@ -14,7 +14,7 @@ const Modal = ({modalTitle}: Props) => {
     const {isOpen, setIsOpen, titleModal, setTitleModal} = useHandleModalContext()
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        // e.preventDefault()
+        e.preventDefault()
         const formData = new FormData(e.currentTarget);
         try {
             storeToDo(formData)
