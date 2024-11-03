@@ -1,7 +1,9 @@
+
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import Skeleton from "@/components/Skeleton";
+import { HandleModalContext} from "./contexts/HandleModalContext";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -24,11 +26,12 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
     <html lang="pt-br">
     <body
-      className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-    >
+      className={`${geistSans.variable} ${geistMono.variable} antialiased h-screen w-screen`}
+    > 
       <Skeleton>
         {children}
       </Skeleton>

@@ -45,9 +45,9 @@ class ToDoController extends Controller
         $dateCurrent = date('Y-m-d', strtotime('now'));
 
         foreach ($toDos as $toDo) {
-            if($toDo['due_date'] > $dateCurrent) {
+            if($toDo['due_date'] >= $dateCurrent) {
                 if(date('Y-m-d', 
-                strtotime('-1 day', strtotime($toDo['due_date']))) == $dateCurrent) 
+                strtotime('-1 week', strtotime($toDo['due_date']))) == $dateCurrent) 
                 {
                     $deadline['nearDeadLine']++;
                 }
@@ -69,10 +69,10 @@ class ToDoController extends Controller
     public function store(StoreToDoRequest $request): JsonResponse
     {
         $data = $request->validated();
-
+        $data['order'] = date('Y-m-d H:i:s', strtotime('now'));
         $toDo = $this->toDo->create($data);
 
-        return response()->json(ToDoResource::make($toDo), Response::HTTP_CREATED);
+        return response()->json($data, Response::HTTP_CREATED);
     }
 
     /**
@@ -80,7 +80,11 @@ class ToDoController extends Controller
      */
     public function show($id): JsonResponse
     {
-        $toDo = $this->toDo->findOrFail($id);
+        $toDo = $this->toDo->find($id);
+
+        if(!$toDo) {
+            return response()->json(null, Response::HTTP_NOT_FOUND);
+        }
 
         return response()->json(ToDoResource::make($toDo), Response::HTTP_OK);
     }

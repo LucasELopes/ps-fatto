@@ -13,6 +13,7 @@ class ToDo extends Model
     protected $table = 'to_dos';
     protected $fillable = [
         'name',
+        'description',
         'cost',
         'due_date',
         'order'

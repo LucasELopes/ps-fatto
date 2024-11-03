@@ -14,6 +14,15 @@ const config: Config = {
         primaryColor: '#6143FF',
         secondColor: '#C1BCEC',
       },
+      animation: {
+        pulseSize: "pulseSize 1s ease-in-out infinite"
+      },
+      keyframes: {
+        pulseSize: {
+          "0%, 100%": { transform: "scale(1)" },
+          "50%": { transform: "scale(1.03)" },
+        },
+      }
     },
   },
   plugins: [],
