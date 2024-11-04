@@ -12,7 +12,7 @@ use Carbon\Carbon;
 use Date;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
-
+use Illuminate\Support\Facades\DB; // Certifique-se de importar a classe DB
 class ToDoController extends Controller
 {
 
@@ -62,6 +62,24 @@ class ToDoController extends Controller
 
         return response()->json($deadline, Response::HTTP_OK);
     }
+
+  
+
+    public function costsToDos(): JsonResponse {
+        $year = date('Y', strtotime('now'));
+    
+        // Obtenha a contagem de tarefas por mês do ano atual
+        $todoCounts = $this->toDo
+            ->selectRaw('MONTH(due_date) as month, COUNT(*) as count')
+            ->whereYear('due_date', $year)
+            ->groupBy('month')
+            ->orderBy('month')
+            ->get();
+    
+        return response()->json($todoCounts, Response::HTTP_OK);
+    }
+    
+    
 
     /**
      * Store a newly created resource in storage.
