@@ -78,6 +78,7 @@ const Modal = ({ modalTitle, handleSubmit, toDoInformation, readonly }: Props) =
                             name="name" 
                             readOnly={readonly}
                             placeholder="Insira o nome da tarefa"
+                            value={toDo?.name}
                             className="border border-indigo-200 rounded-lg px-2 text-center font-normal"
                             value={toDoStream.name}
                             onChange={handleInputChange}
@@ -91,6 +92,7 @@ const Modal = ({ modalTitle, handleSubmit, toDoInformation, readonly }: Props) =
                             name="description" 
                             readOnly={readonly}
                             placeholder="Insira a descrição da tarefa"
+                            value={toDo?.description}
                             className="border border-indigo-200 rounded-lg px-2 text-center font-normal min-h-[100px] max-h-[200px]"
                             value={toDoStream.description}
                             onChange={handleInputChange}
@@ -109,6 +111,7 @@ const Modal = ({ modalTitle, handleSubmit, toDoInformation, readonly }: Props) =
                             value={toDoStream.cost}
                             onChange={handleInputChange}
                             placeholder="Insira o custo da tarefa"
+                            value={toDo?.cost}
                             className="border border-indigo-200 rounded-lg px-2 text-center font-normal"
                             required
                         />
@@ -125,6 +128,7 @@ const Modal = ({ modalTitle, handleSubmit, toDoInformation, readonly }: Props) =
                             value={toDoStream?.due_date ? new Date(toDoStream.due_date).toISOString().split('T')[0] : ""}
                             onChange={handleInputChange}
                             placeholder="Insira o nome da tarefa"
+                            value={toDo?.due_date.toLocaleString()}
                             className="border border-indigo-200 rounded-lg px-2 text-center font-normal"
                             min={currentDate}
                             required

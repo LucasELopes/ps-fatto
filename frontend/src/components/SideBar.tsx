@@ -15,14 +15,15 @@ const SideBar = ({iconSite}: Props) => {
     return (
         <>
             <div className="bg-primaryColor h-screen w-14 md:w-[6%] flex flex-col items-center md:fixed">
-                <div className="h-[10.5%] w-full h-max-[112px]">
-                    <Link href={'/'} className="w-full" onClick={() => setKeyToDo('')}>
+                <div className="h-[10.5%] h-max-[112px]">
+                    <Link href={'/'}  onClick={() => setKeyToDo('')}>
                         <Image
-                            className="hover:rotate-[360deg] transition-all duration-500 w-11/12"
+                            className="hover:rotate-[360deg] transition-all duration-500 w-64"
                             src={iconSite}
                             width={500}
-                            height={500}
+                            height={70}
                             alt="Logo"
+                            title="Home"
                         />
                     </Link>
                 </div>
@@ -30,36 +31,39 @@ const SideBar = ({iconSite}: Props) => {
                     <div className="h-[10%] h-max-[100px]">
                         <Link href={'/charts'}>
                             <Image
-                                className="hover:invert hover:scale-110 duration-300 w-6/12 m-auto" 
+                                className="hover:invert hover:scale-110 duration-300 w-6/12 max-w-20 m-auto" 
                                 src={'/pie-chart.png'}
                                 width={400}
                                 height={400}
                                 alt="Chart"
+                                title="Gráficos"
                             />
                         </Link>
                     </div>
                     <div className="h-[10%] h-max-[100px]">
                         <Link
-                            href={'https://google.com'}
+                            href={'/onTime'}
                             target="_blank"
                         >
                             <Image 
-                                className="hover:invert hover:scale-110 duration-300 w-6/12 m-auto" 
+                                className="hover:invert hover:scale-110 duration-300 w-6/12 max-w-20 m-auto" 
                                 src={'/activity.png'} 
                                 width={400} 
                                 height={400}
                                 alt="Done tasks" 
+                                title="Tarefas no prazo"
                             />
                         </Link>
                     </div>       
                     <div className="h-[10%] h-max-[100px]">
                         <Image 
-                            className="hover:invert hover:scale-110 duration-300 w-11/12 m-auto cursor-pointer" 
+                            className="hover:invert hover:scale-110 duration-300 w-11/12 max-w-20 m-auto cursor-pointer" 
                             src={'/icons8-add-50.png'} 
                             width={400} 
                             height={400}
                             alt="ADD" 
                             onClick={() => {setIsOpen(!isOpen); setTitleModal('Criar Tarefa')}}
+                            title="Adicionar tarefa"
                         />
                     </div>
                     <div className="h-[10%] max-h-[100px]">
@@ -68,11 +72,12 @@ const SideBar = ({iconSite}: Props) => {
                             target="_blank"
                         >
                             <Image 
-                                className="hover:invert hover:scale-110 duration-300 w-6/12 h-auto m-auto" 
+                                className="hover:invert hover:scale-110 duration-300 w-6/12 max-w-20 h-auto m-auto" 
                                 src={'/alert.png'} 
                                 alt="deadlines tasks"
                                 width={400}
                                 height={400}
+                                title="Tarefas perto do prazo"
                             />
                         </Link>
                     </div>
@@ -83,11 +88,12 @@ const SideBar = ({iconSite}: Props) => {
                             target="_blank"
                         >
                             <Image 
-                                className="hover:invert hover:scale-110 duration-300 w-6/12 m-auto" 
+                                className="hover:invert hover:scale-110 duration-300 w-6/12 max-w-20 m-auto" 
                                 src={'/pending.png'} 
                                 width={400} 
                                 height={400}
                                 alt="Pending" 
+                                title="Tarefas atrasadas"
                             />
                         </Link>
                     </div> 

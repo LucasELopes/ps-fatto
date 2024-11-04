@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import ListToDos from "./toDos/_components/ListToDo";
-import Charts from "@/components/Charts";
+import Charts from "@/components/ChartPie";
 import { getDeadLines } from "@/actions/toDo";
 import { deadLineType } from "@/types/deadLine";
 

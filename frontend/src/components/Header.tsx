@@ -26,8 +26,12 @@ const Header = () => {
         >
             <div className="md:col-span-1">
             </div>
-            <div className="md:col-span-1 text-base md:text-lg lg:text-xl">
-                PRONTO!
+            <div className="md:col-span-1 text-xl md:text-2xl lg:text-3xl italic">
+                <Link href={'/'} className="hover:text-indigo-100 duration-300">
+                <div className="hover:scale-110 duration-300">
+                    PRONTO!
+                </div>
+                </Link>
             </div>
             <div className="md:col-span-4"></div>
             <div className="md:col-span-4 flex justify-end rounded-full">

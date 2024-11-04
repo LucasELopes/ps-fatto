@@ -11,7 +11,7 @@ const Chart = dynamic(() => import('react-apexcharts'), {
   ssr: false
 })
 
-const Charts = ({deadlines}: Props) => {
+const ChartPie = ({deadlines}: Props) => {
 
   const options = {
     chart: {
@@ -37,4 +37,4 @@ const Charts = ({deadlines}: Props) => {
 
 }
 
-export default Charts
+export default ChartPie

@@ -37,7 +37,7 @@ const CardToDo = ({toDo}: props) => {
                     <div className="w-9/12 text-sm text-gray-500 overflow-hidden text-ellipsis font-bold text-nowrap">
                         {toDo.id}
                     </div>
-                    <div className="text-ellipsis overflow-hidden text-nowrap text-center pr-3">
+                    <div className="text-ellipsis overflow-hidden text-nowrap text-center pr-3 font-medium">
                         {toDo.name}
                     </div>
                 </div>
@@ -45,7 +45,7 @@ const CardToDo = ({toDo}: props) => {
                     <div className="text-sm text-gray-500 text-ellipsis font-bold">
                         Descrição
                     </div>
-                    <div className="overflow-hidden text-nowrap text-ellipsis text-center">
+                    <div className="overflow-hidden text-nowrap text-ellipsis text-center font-medium">
                         {toDo.description}
                     </div>
                 </div>
@@ -53,7 +53,7 @@ const CardToDo = ({toDo}: props) => {
                     <div className="text-sm text-gray-500 text-ellipsis font-bold">
                         Custo
                     </div>
-                    <div className="overflow-hidden text-nowrap text-center">
+                    <div className="overflow-hidden text-nowrap text-center font-medium">
                         R$ {toDo.cost}
                     </div>
                 </div>
@@ -61,7 +61,7 @@ const CardToDo = ({toDo}: props) => {
                     <div className="text-sm text-gray-500 text-ellipsis font-bold">
                         Entrega
                     </div>
-                    <div className={`overflow-hidden text-nowrap text-center ${diffInMs > weekInMs  ? 'text-black' : (diffInMs < weekInMs && diffInMs > -86400000 )  ? 'text-orange-400 font-semibold' : 'text-red-600 font-bold'}`}>
+                    <div className={`overflow-hidden text-nowrap text-center font-semibold ${diffInMs > weekInMs  ? 'text-black' : (diffInMs < weekInMs && diffInMs > -86400000 )  ? 'text-orange-400' : 'text-red-600 font-bold'}`}>
                         {toDo.due_date.toLocaleString()}
                     </div>
                 </div>
@@ -90,7 +90,7 @@ const CardToDo = ({toDo}: props) => {
                         <Image
                             className="cursor-pointer hover:scale-150 duration-200 z-50"
                             src={'/delete.png'}
-                            alt="add"
+                            alt="delete"
                             width={20}
                             height={10}
                         />

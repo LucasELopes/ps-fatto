@@ -4,6 +4,7 @@ import axios, { AxiosResponse } from "axios"
 import { deadLineType } from "@/types/deadLine"
 import { toDoType } from "@/types/toDo"
 import { api } from "@/utils/api"
+import { costsToDosType } from "@/types/costsTodos"
 
 export async function allToDo(): Promise<toDoType[]> {
     const res = await api.get('/toDos')
@@ -27,4 +28,11 @@ export async function searchToDo(param: string | number): Promise<toDoType|null>
 
 export async function storeToDo(form: FormData) {
     const resp = await api.post('/toDos', form)
+    return resp.data
+}
+
+export async function updateToDo(form: FormData, id: string|number): Promise<toDoType> {
+    const resp = await api.put(`/toDos/${id}`, form)
+
+    return resp.data
 }

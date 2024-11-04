@@ -8,21 +8,27 @@ import Link from "next/link";
 import Loading from "@/components/Loading";
 import { useHandleModalContext } from "@/app/contexts/HandleModalContext";
 
-const ListToDos = () => {
+type Props = {
+    toDosProps?: toDoType[]|null
+}
+
+const ListToDos = ({toDosProps}: Props) => {
     const { keyTodo, setKeyToDo } = useSearchToDoContext();
     
     const [toDos, setToDos] = useState<toDoType[]>([]);
     const [toDosShow, setToDosShow] = useState<toDoType | null>(null);
     const [loading, setLoading] = useState<boolean>(true)
 
-    useEffect(() => {
-        if (!keyTodo) {
-            allToDo().then((data) => setToDos(data));
-        } else {
-            searchToDo(keyTodo).then((data) => setToDosShow(data));
-        }
-        setLoading(false)
-    }, [keyTodo]);
+    if(!toDosProps) {
+        useEffect(() => {
+                if (!keyTodo) {
+                    allToDo().then((data) => setToDos(data));
+                } else {
+                    searchToDo(keyTodo).then((data) => setToDosShow(data));
+                }
+                setLoading(false)
+            }, [keyTodo]);
+    }
 
     if(loading) {
         return (

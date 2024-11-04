@@ -3,7 +3,7 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from "react";
 import Header from "./Header";
 import SideBar from "./SideBar";
-import Charts from "./Charts";
+import Charts from "./ChartPie";
 import { toDoType } from "@/types/toDo";
 import ListToDos from "@/app/toDos/_components/ListToDo";
 import { searchToDo, storeToDo } from "@/actions/toDo";
