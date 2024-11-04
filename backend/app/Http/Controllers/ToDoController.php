@@ -63,8 +63,6 @@ class ToDoController extends Controller
         return response()->json($deadline, Response::HTTP_OK);
     }
 
-  
-
     public function costsToDos(): JsonResponse {
         $year = date('Y', strtotime('now'));
     
@@ -79,7 +77,15 @@ class ToDoController extends Controller
         return response()->json($todoCounts, Response::HTTP_OK);
     }
     
-    
+    public function getOnTime() {
+
+        $toDo = $this->toDo->where('due_date', 
+            '>=', 
+            date('Y-m-d', strtotime('+1 week', strtotime('now')))
+        )->get();
+
+        return response()->json(ToDoResource::collection( $toDo ), Response::HTTP_OK);
+    }    
 
     /**
      * Store a newly created resource in storage.
