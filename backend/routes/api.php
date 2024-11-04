@@ -16,6 +16,7 @@ Route::apiResource('/toDos', ToDoController::class);
 Route::get('/deadline', [ToDoController::class, 'deadline']);
 Route::get('/costsToDos', [ToDoController::class, 'costsToDos']);
 Route::get('/getOnTime', [ToDoController::class, 'getOnTime']);
+Route::get('/getOverdue', [ToDoController::class, 'getOverdue']);
 
 
 Route::get('/', function () {

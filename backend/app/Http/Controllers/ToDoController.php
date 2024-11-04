@@ -77,7 +77,7 @@ class ToDoController extends Controller
         return response()->json($todoCounts, Response::HTTP_OK);
     }
     
-    public function getOnTime() {
+    public function getOnTime(): JsonResponse {
 
         $toDo = $this->toDo->where('due_date', 
             '>=', 
@@ -86,6 +86,16 @@ class ToDoController extends Controller
 
         return response()->json(ToDoResource::collection( $toDo ), Response::HTTP_OK);
     }    
+
+    public function getOverdue() {
+        $toDo = $this->toDo->where('due_date', 
+            '<', 
+            date('Y-m-d', strtotime('now'))
+        )->get();
+
+        // return response()->json(ToDoResource::collection( $toDo ), Response::HTTP_OK);
+        return $toDo->count();
+    }
 
     /**
      * Store a newly created resource in storage.

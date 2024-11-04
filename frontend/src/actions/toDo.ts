@@ -15,10 +15,15 @@ export async function getDeadLines(): Promise<deadLineType> {
     return res.data
 }
 
-export async function searchToDo(param: string|number): Promise<toDoType> {
-    const res = await api.get(`/toDos/${param}`)
-    return res.data
+export async function searchToDo(param: string | number): Promise<toDoType|null> {
+    try {
+        const res = await api.get(`/toDos/${param}`);
+        return res.data;
+    } catch (error) {
+        return null;
+    }
 }
+
 
 export async function storeToDo(form: FormData) {
     const resp = await api.post('/toDos', form)

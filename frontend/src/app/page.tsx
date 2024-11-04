@@ -11,7 +11,7 @@ export default function Home() {
 
   return (
 
-    <div className="grid gap-2 bg-indigo-50 h-full">
+    <div className="grid gap-2  h-full">
       <div className="p-4 ">
         <ListToDos/>
       </div>

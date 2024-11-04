@@ -13,7 +13,6 @@ const CardToDo = ({toDo}: props) => {
     const dueDate = new Date(toDo.due_date)
 
     const diffInMs = dueDate.getTime() - currentDate.getTime()
-    console.log(diffInMs)
     const weekInMs = 604800000
     const ondDayInMS  = weekInMs/7
 
@@ -29,7 +28,7 @@ const CardToDo = ({toDo}: props) => {
             <div className={`
                 ${toDo.cost < 1000 ? 'bg-indigo-100' : 'bg-indigo-200'} 
                 col-span-7 max-w-[1280px] m-auto rounded-xl p-2 grid grid-cols-12 outline-2 hover:outline-indigo-400 hover:outline
-                shadow-md  hover:scale-105 transition-all duration-300 py-4
+                shadow-md  hover:scale-105 transition-all duration-300 py-4 
             `}>
                 <div className="col-span-2 overflow-hidden">
                     <div className="w-9/12 text-sm text-gray-500 overflow-hidden text-ellipsis font-bold text-nowrap">

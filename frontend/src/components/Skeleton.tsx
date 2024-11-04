@@ -31,7 +31,7 @@ const Skeleton = ({children}: Props) => {
                         </div>
                             <div className="w-full ml-14 md:ml-[5%]">
                                 <Header/>
-                            <div className="overflow-y-scroll">
+                            <div>
                                 {isOpen &&
                                     <Modal modalTitle={titleModal}/>
                                 }
