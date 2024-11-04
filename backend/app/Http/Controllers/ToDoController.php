@@ -66,7 +66,6 @@ class ToDoController extends Controller
     public function costsToDos(): JsonResponse {
         $year = date('Y', strtotime('now'));
     
-        // Obtenha a contagem de tarefas por mês do ano atual
         $todoCounts = $this->toDo
             ->selectRaw('MONTH(due_date) as month, COUNT(*) as count')
             ->whereYear('due_date', $year)
@@ -77,7 +76,7 @@ class ToDoController extends Controller
         return response()->json($todoCounts, Response::HTTP_OK);
     }
     
-    public function getOnTime(): JsonResponse {
+    public function getOnTime() {
 
         $toDo = $this->toDo->where('due_date', 
             '>=', 
@@ -87,14 +86,26 @@ class ToDoController extends Controller
         return response()->json(ToDoResource::collection( $toDo ), Response::HTTP_OK);
     }    
 
-    public function getOverdue() {
+    public function getNearDeadLine() {
+
+        $toDo = $this->toDo->where('due_date', 
+            '<=', 
+            date('Y-m-d', strtotime('+1 week', strtotime('now')))
+        )->where('due_date', 
+            '>=', date('Y-m-d', strtotime('+1 week', strtotime('now'))))
+            ->get();
+
+        return response()->json(ToDoResource::collection( $toDo ), Response::HTTP_OK);
+
+    }
+
+    public function getOverdue():JsonResponse {
         $toDo = $this->toDo->where('due_date', 
             '<', 
             date('Y-m-d', strtotime('now'))
         )->get();
 
-        // return response()->json(ToDoResource::collection( $toDo ), Response::HTTP_OK);
-        return $toDo->count();
+        return response()->json(ToDoResource::collection( $toDo ), Response::HTTP_OK);
     }
 
     /**
