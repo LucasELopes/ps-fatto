@@ -1,27 +1,47 @@
-import { storeToDo } from "@/actions/toDo"
 import { useHandleModalContext } from "@/app/contexts/HandleModalContext"
+import { toDoType } from "@/types/toDo"
 import Image from "next/image"
-import { useState } from "react"
-
+import { useState, useEffect } from "react"
 
 type Props = {
     modalTitle: string
+    handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void
+    toDoInformation?: toDoType
+    readonly: boolean
 }
 
-const Modal = ({modalTitle}: Props) => {
+const Modal = ({ modalTitle, handleSubmit, toDoInformation, readonly }: Props) => {
     
     const currentDate = new Date().toISOString().split('T')[0]
-    const {isOpen, setIsOpen, titleModal, setTitleModal} = useHandleModalContext()
+    const { isOpen, setIsOpen, setTitleModal, setToDoInformation } = useHandleModalContext()
+    const [toDoStream, setToDoStream] = useState<toDoType>({
+        id: toDoInformation?.id || "",
+        name: toDoInformation?.name || "",
+        description: toDoInformation?.description || "",
+        cost: toDoInformation?.cost || 0,
+        order: toDoInformation?.order || 0,
+        due_date: toDoInformation?.due_date || currentDate,
+    })
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
-        const formData = new FormData(e.currentTarget);
-        try {
-            storeToDo(formData)
-            setIsOpen(false)
-        } catch (error) {
-            console.log('Erro ao enviar tarefa: ', error)
+    useEffect(() => {
+        if (toDoInformation) {
+            setToDoStream({
+                id: toDoInformation.id,
+                name: toDoInformation.name,
+                description: toDoInformation.description,
+                cost: toDoInformation.cost,
+                order: toDoInformation.order,
+                due_date: toDoInformation.due_date,
+            })
         }
+    }, [toDoInformation])
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { name, value } = e.target
+        setToDoStream(prev => ({
+            ...prev,
+            [name]: value
+        }))
     }
 
     return (
@@ -41,7 +61,7 @@ const Modal = ({modalTitle}: Props) => {
                         width={25}
                         height={25}
                         className="cursor-pointer hover:scale-120 duration-300"
-                        onClick={() =>{ setIsOpen(!isOpen); setTitleModal('Criar Tarefa')}}
+                        onClick={() => { setIsOpen(!isOpen); setTitleModal('Criar Tarefa'); setToDoInformation(null) }}
                     />
                 </div>   
                 <div>
@@ -56,42 +76,54 @@ const Modal = ({modalTitle}: Props) => {
                             id="name" 
                             type="text" 
                             name="name" 
+                            readOnly={readonly}
                             placeholder="Insira o nome da tarefa"
                             className="border border-indigo-200 rounded-lg px-2 text-center font-normal"
+                            value={toDoStream.name}
+                            onChange={handleInputChange}
                             required
                         />
                     </label>
-                    <label htmlFor="name" className="flex flex-col text-gray-400 font-bold">
+                    <label htmlFor="description" className="flex flex-col text-gray-400 font-bold">
                         Descrição da tarefa
                         <textarea 
-                            id="name" 
+                            id="description" 
                             name="description" 
+                            readOnly={readonly}
                             placeholder="Insira a descrição da tarefa"
                             className="border border-indigo-200 rounded-lg px-2 text-center font-normal min-h-[100px] max-h-[200px]"
+                            value={toDoStream.description}
+                            onChange={handleInputChange}
                             maxLength={255}
                         />
                     </label>
-                    <label htmlFor="name" className="flex flex-col text-gray-400 font-bold">
+                    <label htmlFor="cost" className="flex flex-col text-gray-400 font-bold">
                         <div>
                             Custo da tarefa<span className="text-red-300">*</span> 
                         </div>
                         <input 
-                            id="name" 
+                            id="cost" 
                             type="number" 
-                            name="cost" 
+                            name="cost"
+                            readOnly={readonly}
+                            value={toDoStream.cost}
+                            onChange={handleInputChange}
                             placeholder="Insira o custo da tarefa"
                             className="border border-indigo-200 rounded-lg px-2 text-center font-normal"
                             required
                         />
                     </label>
-                    <label htmlFor="name" className="flex flex-col text-gray-400 font-bold">
+                    <label htmlFor="due_date" className="flex flex-col text-gray-400 font-bold">
                         <div>
                             Data de entrega<span className="text-red-300">*</span> 
                         </div>
                         <input 
-                            id="name" 
+                            id="due_date" 
                             type="date" 
-                            name="due_date" 
+                            name="due_date"
+                            readOnly={readonly}
+                            value={toDoStream?.due_date ? new Date(toDoStream.due_date).toISOString().split('T')[0] : ""}
+                            onChange={handleInputChange}
                             placeholder="Insira o nome da tarefa"
                             className="border border-indigo-200 rounded-lg px-2 text-center font-normal"
                             min={currentDate}
