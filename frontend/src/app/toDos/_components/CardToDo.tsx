@@ -21,7 +21,8 @@ const CardToDo = ({toDo}: props) => {
 
         <div 
             key={toDo.id} 
-            className="w-full h-full grid grid-cols-12 gap-2 p-2 cursor-pointer" 
+            className="w-full h-full grid grid-cols-12 gap-2 p-2 cursor-pointer"
+            
         >
             <div className="col-span-2">
             </div>
@@ -64,20 +65,30 @@ const CardToDo = ({toDo}: props) => {
                         {toDo.due_date.toLocaleString()}
                     </div>
                 </div>
-                <div className="col-span-1 flex items-center justify-center gap-x-3">
+                <div className="col-span-1 flex items-center justify-center gap-x-3 z-50">
                     <div>
                         <Image
-                            className="cursor-pointer hover:scale-150 duration-200"
-                            src={'/editing.png'}
-                            alt="editing"
+                            className="cursor-pointer hover:scale-150 duration-200 z-50"
+                            src={'/eye.png'}
+                            alt="add"
                             width={20}
                             height={10}
-                            onClick={() => {setIsOpen(!isOpen); setTitleModal('Editar Tarefa'); setReadOnly(true); setToDoInformation(toDo)}}
+                            onClick={() => {setIsOpen(!isOpen); setTitleModal('Visualizar Tarefa'); setToDoInformation(toDo); setReadOnly(true)}}
                         />
                     </div>
                     <div>
                         <Image
-                            className="cursor-pointer hover:scale-150 duration-200"
+                            className="cursor-pointer hover:scale-150 duration-200 z-50"
+                            src={'/editing.png'}
+                            alt="editing"
+                            width={20}
+                            height={10}
+                            onClick={() => {setIsOpen(!isOpen); setTitleModal('Editar Tarefa'); setToDoInformation(toDo); setReadOnly(false)}}
+                        />
+                    </div>
+                    <div>
+                        <Image
+                            className="cursor-pointer hover:scale-150 duration-200 z-50"
                             src={'/delete.png'}
                             alt="add"
                             width={20}

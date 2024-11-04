@@ -6,7 +6,9 @@ type ModalContextType = {
     // setShowToDo: (toDo: toDoType) => void
 
     // toDoInformation: toDoType
+    readOnly: boolean
     setReadOnly: (value: boolean) => void
+
     setToDoInformation: (value: toDoType|null) => void
 
     titleModal: string

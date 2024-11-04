@@ -51,7 +51,7 @@ const Modal = ({ modalTitle, handleSubmit, toDoInformation, readonly }: Props) =
                     w-3/12 m-auto backdrop:opacity-  
                     border border-indigo-400 rounded-lg 
                     px-5 py-2 flex flex-col justify-center
-                    relative
+                    relative shadow-lg
                 "
             >
                 <div className="absolute top-[-6px] right-[-6px] rounded-full p-1">
@@ -130,10 +130,17 @@ const Modal = ({ modalTitle, handleSubmit, toDoInformation, readonly }: Props) =
                             required
                         />
                     </label>
+                    {!readonly &&
+                        <button type="submit" className="bg-indigo-600 text-indigo-200 h-8 font-bold max-w-40 w-6/12 m-auto my-2 rounded-lg hover:scale-105 hover:text-indigo-200 duration-300">
+                            Enviar
+                        </button>
+                    }
+                    {
+                        readonly &&
+                        <div className="h-2">
 
-                    <button type="submit" className="bg-indigo-400 h-8 font-bold max-w-40 w-6/12 m-auto my-2 rounded-lg hover:scale-105 hover:text-indigo-200 duration-300">
-                        Enviar
-                    </button>
+                        </div>
+                    }
                 </form>
             </dialog>
         </div>

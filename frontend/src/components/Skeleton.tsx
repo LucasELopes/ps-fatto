@@ -37,7 +37,7 @@ const Skeleton = ({children}: Props) => {
     }
 
     return (
-        <HandleModalContext.Provider value={{isOpen, setIsOpen, titleModal, setTitleModal, setToDoInformation, setReadOnly}}>
+        <HandleModalContext.Provider value={{isOpen, setIsOpen, titleModal, setTitleModal, setToDoInformation, readOnly, setReadOnly}}>
             <SearchToDoContext.Provider value={{keyTodo, setKeyToDo}}>
                 <div className="flex">        
                         <div className="">
@@ -46,20 +46,19 @@ const Skeleton = ({children}: Props) => {
                             <div className="w-full ml-14 md:ml-[5%]">
                                 <Header/>
                             <div>
-                                {isOpen && toDoInformation &&
+                                {isOpen && toDoInformation  &&
                                     <Modal 
                                         modalTitle={titleModal} 
                                         handleSubmit={handleSubmitToDo} 
                                         toDoInformation={toDoInformation} 
-                                        readonly={false}
+                                        readonly={readOnly}
                                     /> 
                                 }
-                                {
-                                    isOpen && !toDoInformation && 
+                                {isOpen && !toDoInformation && 
                                     <Modal 
                                         modalTitle={titleModal} 
                                         handleSubmit={handleSubmitToDo} 
-                                        readonly={false}
+                                        readonly={readOnly}
                                     /> 
                                 }
                                 {children}
