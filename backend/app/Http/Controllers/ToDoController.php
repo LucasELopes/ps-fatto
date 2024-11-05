@@ -123,15 +123,16 @@ class ToDoController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($id): JsonResponse
+    public function show($id)
     {
-        $toDo = $this->toDo->find($id);
+        $toDo = $this->toDo->where('id', $id)
+            ->orWhere('name', $id)
+            ->get();
 
         if(!$toDo) {
             return response()->json(null, Response::HTTP_NOT_FOUND);
         }
-
-        return response()->json(ToDoResource::make($toDo), Response::HTTP_OK);
+        return response()->json(ToDoResource::collection($toDo), Response::HTTP_OK);
     }
 
     /**

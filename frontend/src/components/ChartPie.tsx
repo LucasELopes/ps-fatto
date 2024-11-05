@@ -24,7 +24,14 @@ const ChartPie = ({deadlines}: Props) => {
     const series = [deadlines.nearDeadLine, deadlines.onTime, deadlines.overdue] 
     return (
       <div>
-        <Chart options={options} series={series} type="donut" height={400} width={450}/>
+        <Chart 
+          className="bg-gray-100 shadow-lg p-2 min-w-[450px] max-w-[520px] m-2 rounded-md"
+          options={options} 
+          series={series} 
+          type="donut" 
+          height={400} 
+          width={450}
+        />
       </div>
     )
   }

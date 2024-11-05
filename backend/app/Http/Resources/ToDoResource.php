@@ -17,7 +17,7 @@ class ToDoResource extends JsonResource
         // return parent::toArray($request);
         $dateRequest = $this->due_date;
 
-        $FormatDateRequest = date("m/d/Y", strtotime($dateRequest));
+        $FormatDateRequest = date("d/m/Y", strtotime($dateRequest));
 
 
         return [

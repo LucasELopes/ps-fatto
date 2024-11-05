@@ -11,8 +11,8 @@ const CardToDo = ({toDo}: props) => {
 
     const currentDate = new Date()
     const dueDate = new Date(toDo.due_date)
-
     const diffInMs = dueDate.getTime() - currentDate.getTime()
+
     const weekInMs = 604800000
 
     const {isOpen, setIsOpen, setTitleModal, setToDoInformation, setReadOnly} = useHandleModalContext()
@@ -21,7 +21,7 @@ const CardToDo = ({toDo}: props) => {
 
         <div 
             key={toDo.id} 
-            className="w-full h-full grid grid-cols-12 gap-2 p-2 cursor-pointer"
+            className="w-full h-full grid grid-cols-12 gap-2 p-2 cursor-default my-4"
             
         >
             <div className="col-span-2">
@@ -31,11 +31,19 @@ const CardToDo = ({toDo}: props) => {
             <div className={`
                 ${toDo.cost < 1000 ? 'bg-indigo-100' : 'bg-indigo-200'} 
                 col-span-7 max-w-[1280px] m-auto rounded-xl p-2 grid grid-cols-12 outline-2 hover:outline-indigo-400 hover:outline
-                shadow-md  hover:scale-105 transition-all duration-300 py-4 
-            `}>
+                shadow-md  hover:scale-110 transition-all duration-300 py-4 relative 
+                `}>
+                <div className={`
+                    ${toDo.cost < 1000 ? 'bg-indigo-100' : 'bg-indigo-200'} 
+                    bg-indigo-100 p-1 rounded-t-xl text-sm 
+                    text-gray-500 overflow-hidden text-ellipsis 
+                    font-bold text-nowrap absolute top-[-17px] left-0 
+                `}>
+                    {toDo.id}
+                </div>
                 <div className="col-span-2 overflow-hidden">
-                    <div className="w-9/12 text-sm text-gray-500 overflow-hidden text-ellipsis font-bold text-nowrap">
-                        {toDo.id}
+                <div className="text-sm text-gray-500 text-ellipsis font-bold">
+                        Título
                     </div>
                     <div className="text-ellipsis overflow-hidden text-nowrap text-center pr-3 font-medium">
                         {toDo.name}

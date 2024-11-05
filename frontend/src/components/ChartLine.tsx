@@ -56,9 +56,14 @@ const ChartLine = ({costsTodos}: Props) => {
       data: costsTodos.map((e) => e.count)
     }] 
     return (
-      <div>
-        <Chart options={options} series={series} type="line" height={400} width={620}/>
-      </div>
+        <Chart 
+          className="bg-gray-100 shadow-lg p-2 min-w-[500px] max-w-[640px] m-2 rounded-md" 
+          options={options} 
+          series={series} 
+          type="line" 
+          height={400} 
+          width={620}
+        />
     )
   }
 

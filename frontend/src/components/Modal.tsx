@@ -14,6 +14,7 @@ const Modal = ({ modalTitle, handleSubmit, toDoInformation, readonly }: Props) =
     
     const currentDate = new Date().toISOString().split('T')[0]
     const { isOpen, setIsOpen, setTitleModal, setToDoInformation } = useHandleModalContext()
+
     const [toDoStream, setToDoStream] = useState<toDoType>({
         id: toDoInformation?.id || "",
         name: toDoInformation?.name || "",
@@ -78,7 +79,7 @@ const Modal = ({ modalTitle, handleSubmit, toDoInformation, readonly }: Props) =
                             name="name" 
                             readOnly={readonly}
                             placeholder="Insira o nome da tarefa"
-                            value={toDo?.name}
+                            value={toDoInformation?.name}
                             className="border border-indigo-200 rounded-lg px-2 text-center font-normal"
                             value={toDoStream.name}
                             onChange={handleInputChange}
@@ -92,7 +93,7 @@ const Modal = ({ modalTitle, handleSubmit, toDoInformation, readonly }: Props) =
                             name="description" 
                             readOnly={readonly}
                             placeholder="Insira a descrição da tarefa"
-                            value={toDo?.description}
+                            value={toDoInformation?.description}
                             className="border border-indigo-200 rounded-lg px-2 text-center font-normal min-h-[100px] max-h-[200px]"
                             value={toDoStream.description}
                             onChange={handleInputChange}
@@ -111,7 +112,7 @@ const Modal = ({ modalTitle, handleSubmit, toDoInformation, readonly }: Props) =
                             value={toDoStream.cost}
                             onChange={handleInputChange}
                             placeholder="Insira o custo da tarefa"
-                            value={toDo?.cost}
+                            value={toDoInformation?.cost}
                             className="border border-indigo-200 rounded-lg px-2 text-center font-normal"
                             required
                         />
@@ -128,7 +129,7 @@ const Modal = ({ modalTitle, handleSubmit, toDoInformation, readonly }: Props) =
                             value={toDoStream?.due_date ? new Date(toDoStream.due_date).toISOString().split('T')[0] : ""}
                             onChange={handleInputChange}
                             placeholder="Insira o nome da tarefa"
-                            value={toDo?.due_date.toLocaleString()}
+                            value={toDoInformation?.due_date ? new Date(toDoInformation.due_date).toISOString().split('T')[0] : ""}
                             className="border border-indigo-200 rounded-lg px-2 text-center font-normal"
                             min={currentDate}
                             required

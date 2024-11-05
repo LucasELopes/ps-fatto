@@ -22,10 +22,10 @@ const Home = () => {
 
     return (
         <div className="flex justify-center items-center h-screen">
-            <div className="bg-gray-100 shadow-lg w-3/12 min-w-[450px] max-w-[520px] m-2 rounded-md">
+            <div>
                 <ChartPie deadlines={deadline}/>
             </div>
-            <div className="bg-gray-100 shadow-lg w-4/12 min-w-[500px] max-w-[620px] m-2 rounded-md">
+            <div>
                 <ChartLine costsTodos={costsToDos}/>
             </div>
         </div>

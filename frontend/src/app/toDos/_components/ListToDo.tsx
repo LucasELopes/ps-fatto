@@ -7,6 +7,7 @@ import { useSearchToDoContext } from "@/app/contexts/SearchToDoContext";
 import Link from "next/link";
 import Loading from "@/components/Loading";
 import { useHandleModalContext } from "@/app/contexts/HandleModalContext";
+import { todo } from "node:test";
 
 type Props = {
     toDosProps?: toDoType[]|null
@@ -16,7 +17,7 @@ const ListToDos = ({toDosProps}: Props) => {
     const { keyTodo, setKeyToDo } = useSearchToDoContext();
     
     const [toDos, setToDos] = useState<toDoType[]>([]);
-    const [toDosShow, setToDosShow] = useState<toDoType | null>(null);
+    const [toDosShow, setToDosShow] = useState<toDoType[] | null>(null);
     const [loading, setLoading] = useState<boolean>(true)
 
     if(!toDosProps) {
@@ -25,6 +26,7 @@ const ListToDos = ({toDosProps}: Props) => {
                     allToDo().then((data) => setToDos(data));
                 } else {
                     searchToDo(keyTodo).then((data) => setToDosShow(data));
+                    // console.log(toDosShow)
                 }
                 setLoading(false)
             }, [keyTodo]);
@@ -39,12 +41,14 @@ const ListToDos = ({toDosProps}: Props) => {
     if(keyTodo) {
         if (toDosShow) { // Exibe a tarefa pesquisa
             return (
-                <div className="
-                    w-[calc(100vw-3.5rem)] md:w-[calc(100vw-6%)] h-[calc(100vh-6rem)] 
-                    flex justify-center items-center 
-                ">
-                    <CardToDo key={toDosShow.id} toDo={toDosShow} />
-                </div>
+                toDosShow.map((toDo) => (
+                    <div key={toDo.id} className="
+                        w-[calc(100vw-3.5rem)] md:w-[calc(100vw-6%)] h-[calc(100vh-6rem)] 
+                        flex justify-center items-center 
+                    ">
+                        <CardToDo key={toDo.id} toDo={toDo} />
+                    </div>
+                ))
             );
         }
         else { // Exibe caso a tarefa pesquisa não for encontrada
@@ -64,8 +68,8 @@ const ListToDos = ({toDosProps}: Props) => {
         if (toDos.length > 0) { // Exibe todas as tarefas
             return (
                 <div>
-                    {toDos.map((toDo, index) => ( 
-                        <CardToDo key={index} toDo={toDo} />
+                    {toDos.map((toDo) => ( 
+                        <CardToDo key={toDo.id} toDo={toDo} />
                     ))}
                 </div>       
             );
