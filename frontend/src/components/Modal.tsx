@@ -1,5 +1,6 @@
 import { useHandleModalContext } from "@/app/contexts/HandleModalContext"
 import { toDoType } from "@/types/toDo"
+import { read } from "fs"
 import Image from "next/image"
 import { useState, useEffect } from "react"
 
@@ -12,8 +13,10 @@ type Props = {
 
 const Modal = ({ modalTitle, handleSubmit, toDoInformation, readonly }: Props) => {
     
-    const currentDate = new Date().toISOString().split('T')[0]
-    const { isOpen, setIsOpen, setTitleModal, setToDoInformation } = useHandleModalContext()
+    const currentDate = new Intl.DateTimeFormat('en-US').format(new Date())
+
+    // alert(currentDate)
+    const { isOpen, setIsOpen, setTitleModal, setToDoInformation, setReadOnly, readOnly } = useHandleModalContext()
 
     const [toDoStream, setToDoStream] = useState<toDoType>({
         id: toDoInformation?.id || "",
@@ -62,7 +65,7 @@ const Modal = ({ modalTitle, handleSubmit, toDoInformation, readonly }: Props) =
                         width={25}
                         height={25}
                         className="cursor-pointer hover:scale-120 duration-300"
-                        onClick={() => { setIsOpen(!isOpen); setTitleModal('Criar Tarefa'); setToDoInformation(null) }}
+                        onClick={() => { setIsOpen(!isOpen); setTitleModal('Criar Tarefa'); setToDoInformation(null); setReadOnly(false) }}
                     />
                 </div>   
                 <div>
@@ -126,10 +129,9 @@ const Modal = ({ modalTitle, handleSubmit, toDoInformation, readonly }: Props) =
                             type="date" 
                             name="due_date"
                             readOnly={readonly}
-                            value={toDoStream?.due_date ? new Date(toDoStream.due_date).toISOString().split('T')[0] : ""}
+                            value={toDoStream?.due_date ? new Date(toDoStream.due_date).toLocaleString().split('T')[0] : ''}
                             onChange={handleInputChange}
                             placeholder="Insira o nome da tarefa"
-                            value={toDoInformation?.due_date ? new Date(toDoInformation.due_date).toISOString().split('T')[0] : ""}
                             className="border border-indigo-200 rounded-lg px-2 text-center font-normal"
                             min={currentDate}
                             required
