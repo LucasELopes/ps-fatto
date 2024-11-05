@@ -15,9 +15,9 @@ class ToDoResource extends JsonResource
     public function toArray(Request $request): array
     {
         // return parent::toArray($request);
-        $dateRequest = $this->due_date;
+        // $dateRequest = $this->due_date;
 
-        $FormatDateRequest = date("d/m/Y", strtotime($dateRequest));
+        // $FormatDateRequest = date("d/m/Y", strtotime($dateRequest));
 
 
         return [
@@ -25,7 +25,7 @@ class ToDoResource extends JsonResource
             'name' => $this->name,
             'description' => $this->description,
             'cost' => $this->cost,
-            'due_date' => $FormatDateRequest,
+            'due_date' => $this->due_date,
             'order' => $this->order,
             
         ];
