@@ -1,13 +1,11 @@
 import { allToDo, searchToDo } from "@/actions/toDo";
 import { toDoType } from "@/types/toDo";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import CardToDo from "./CardToDo";
 import { useSearchToDoContext } from "@/app/contexts/SearchToDoContext";
 import Link from "next/link";
 import Loading from "@/components/Loading";
-import { useHandleModalContext } from "@/app/contexts/HandleModalContext";
-import { todo } from "node:test";
+import {DragDropContext, Droppable} from '@hello-pangea/dnd'
 
 type Props = {
     toDosProps?: toDoType[]|null
@@ -45,7 +43,7 @@ const ListToDos = ({toDosProps}: Props) => {
                         w-[calc(100vw-3.5rem)] md:w-[calc(100vw-6%)] h-[calc(100vh-6rem)] 
                         flex justify-center items-center 
                     ">
-                        <CardToDo key={toDo.id} toDo={toDo} />
+                        <CardToDo key={toDo.id} toDo={toDo} index={0}/>
                     </div>
                 ))
             );
@@ -64,13 +62,41 @@ const ListToDos = ({toDosProps}: Props) => {
         }
     }
     else if(!keyTodo) {
+
+        function reorder<T>(list:T[], startIndex: number, endIndex: number) {
+            const result = Array.from(list)
+            const [remove] = result.splice(startIndex, 1)
+            result.splice(endIndex, 0, remove)
+
+            return result;
+        }    
+
+        const onDragEnd = (result: any) => {
+            if(!result.destination) {
+                return 
+            }
+
+            const items = reorder(toDos, result.source.index, result.destination.index)
+            setToDos(items)
+        }
+
         if (toDos.length > 0) { // Exibe todas as tarefas
             return (
-                <div>
-                    {toDos.map((toDo) => ( 
-                        <CardToDo key={toDo.id} toDo={toDo} />
-                    ))}
-                </div>       
+                <DragDropContext onDragEnd={onDragEnd}>
+                    <Droppable droppableId="tasks" type="list" direction="vertical">
+                        {(provided) => (
+                            <div
+                                ref={provided.innerRef}
+                                {...provided.droppableProps}
+                            >
+                                {toDos.map((toDo, index) => ( 
+                                    <CardToDo key={toDo.id} toDo={toDo} index={index}/>
+                                ))}
+                            {provided.placeholder}
+                            </div>
+                        )}
+                    </Droppable>
+                </DragDropContext>       
             );
         }
         else if(toDos.length === 0 && !toDosShow){

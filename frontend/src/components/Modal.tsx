@@ -81,7 +81,6 @@ const Modal = ({ modalTitle, handleSubmit, toDoInformation, readonly }: Props) =
                             name="name" 
                             readOnly={readonly}
                             placeholder="Insira o nome da tarefa"
-                            value={toDoInformation?.name}
                             className="border border-indigo-200 rounded-lg px-2 text-center font-normal"
                             value={toDoStream.name}
                             onChange={handleInputChange}
@@ -95,7 +94,6 @@ const Modal = ({ modalTitle, handleSubmit, toDoInformation, readonly }: Props) =
                             name="description" 
                             readOnly={readonly}
                             placeholder="Insira a descrição da tarefa"
-                            value={toDoInformation?.description}
                             className="border border-indigo-200 rounded-lg px-2 text-center font-normal min-h-[100px] max-h-[200px]"
                             value={toDoStream.description}
                             onChange={handleInputChange}
@@ -114,7 +112,6 @@ const Modal = ({ modalTitle, handleSubmit, toDoInformation, readonly }: Props) =
                             value={toDoStream.cost}
                             onChange={handleInputChange}
                             placeholder="Insira o custo da tarefa"
-                            value={toDoInformation?.cost}
                             className="border border-indigo-200 rounded-lg px-2 text-center font-normal"
                             required
                         />
