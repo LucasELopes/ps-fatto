@@ -21,7 +21,7 @@ const CardToDo = ({toDo, index}: props) => {
     const {isOpen, setIsOpen, setTitleModal, setToDoInformation, setReadOnly} = useHandleModalContext()
 
     return (
-        <Draggable draggableId={("" + index) + toDo.id } index={index}>
+        <Draggable draggableId={toDo.id} index={index}>
             {(provided) => (
                 <div 
                 {...provided.draggableProps}

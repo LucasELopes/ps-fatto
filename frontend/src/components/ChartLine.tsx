@@ -9,8 +9,8 @@ const Chart = dynamic(() => import('react-apexcharts'), {
 
 function getMonthName(monthNumber: number) {
   const monthNames = [
-    "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
-    "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
+    "Jan", "Fev", "Mar", "Abr", "Mai", "Jun",
+    "Jul", "Ago", "Set", "Out", "Nov", "Dez"
   ];
   return monthNames[monthNumber - 1] || "Mês inválido";
 }
@@ -38,7 +38,7 @@ const ChartLine = ({costsTodos}: Props) => {
     )),
 
     title: {
-      text: 'Quantidade de tarefas com data de entrega por mês'
+      text: 'Quantidade de tarefas com data de entrega por mês no ano atual.'
     },
 
 

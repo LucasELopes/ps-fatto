@@ -90,7 +90,7 @@ const ListToDos = ({toDosProps}: Props) => {
                                 {...provided.droppableProps}
                             >
                                 {toDos.map((toDo, index) => ( 
-                                    <CardToDo key={toDo.id} toDo={toDo} index={index}/>
+                                    <CardToDo key={'CardToDo'+toDo.id} toDo={toDo} index={index}/>
                                 ))}
                             {provided.placeholder}
                             </div>

@@ -17,11 +17,12 @@ const ChartPie = ({deadlines}: Props) => {
     chart: {
       id: 'donut',
     },
-    labels: [ 'Tarefas perto do prazo', 'Tarefas dentro do prazo', 'Tarefas atrasadas']
+    labels: [ 'Tarefas dentro do prazo', 'Tarefas perto do prazo', 'Tarefas atrasadas'],
+    colors: [ '#54d754', '#e5e552', '#d75a54']
   }
   
   if (deadlines) {
-    const series = [deadlines.nearDeadLine, deadlines.onTime, deadlines.overdue] 
+    const series = [deadlines.onTime, deadlines.nearDeadLine, deadlines.overdue] 
     return (
       <div>
         <Chart 
