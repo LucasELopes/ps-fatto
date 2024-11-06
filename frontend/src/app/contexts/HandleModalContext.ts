@@ -14,6 +14,12 @@ type ModalContextType = {
     titleModal: string
     setTitleModal: (value: string) => void
 
+    keyToDoDelete: string|number|null
+    setKeyToDoDelete: (value: string|number|null) => void
+
+    isOpenDelete: boolean
+    setIsOpenDelete: (isOpenDelete: boolean) => void
+
     isOpen: boolean
     setIsOpen: (isOpen: boolean) => void
 }

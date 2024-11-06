@@ -10,6 +10,7 @@ import { searchToDo, storeToDo } from "@/actions/toDo";
 import Modal from "./Modal";
 import { HandleModalContext } from "@/app/contexts/HandleModalContext";
 import { SearchToDoContext } from "@/app/contexts/SearchToDoContext";
+import ModalDelete from "./ModalDelete";
 
 type Props = {
     children?: ReactNode;
@@ -19,6 +20,10 @@ const Skeleton = ({children}: Props) => {
     
     const [titleModal, setTitleModal] = useState<string>('')
     const [isOpen, setIsOpen] = useState<boolean>(false)
+
+
+    const [keyToDoDelete, setKeyToDoDelete] = useState<string|number|null>(null)
+    const [isOpenDelete, setIsOpenDelete] = useState<boolean>(false)
 
     const [readOnly, setReadOnly] = useState<boolean>(false)
 
@@ -38,7 +43,12 @@ const Skeleton = ({children}: Props) => {
     }
 
     return (
-        <HandleModalContext.Provider value={{isOpen, setIsOpen, titleModal, setTitleModal, setToDoInformation, readOnly, setReadOnly}}>
+        <HandleModalContext.Provider value={{isOpen, setIsOpen, titleModal, 
+                                                setTitleModal, setToDoInformation, readOnly, 
+                                                setReadOnly, isOpenDelete, setIsOpenDelete, 
+                                                keyToDoDelete, setKeyToDoDelete
+                                            }}
+        >
             <SearchToDoContext.Provider value={{keyTodo, setKeyToDo}}>
                 <div className="flex">        
                         <div className="">
@@ -61,6 +71,9 @@ const Skeleton = ({children}: Props) => {
                                         handleSubmit={handleSubmitToDo} 
                                         readonly={readOnly}
                                     /> 
+                                }
+                                {isOpenDelete &&
+                                    <ModalDelete id={keyToDoDelete}/>
                                 }
                                 {children}
                             </div>

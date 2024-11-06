@@ -58,3 +58,9 @@ export async function updateToDo(form: FormData, id: string|number): Promise<toD
     return resp.data
 }
 
+export async function deleteToDo(param: string | number) {
+    const resp = await api.delete(`/toDos/${param}`)
+
+    return resp.data
+}
+

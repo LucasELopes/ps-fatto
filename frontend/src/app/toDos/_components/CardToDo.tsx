@@ -18,7 +18,7 @@ const CardToDo = ({toDo, index}: props) => {
     const weekInMs = 604800000
     const day = weekInMs/7
 
-    const {isOpen, setIsOpen, setTitleModal, setToDoInformation, setReadOnly} = useHandleModalContext()
+    const {isOpen, setIsOpen, setTitleModal, setToDoInformation, setReadOnly, setIsOpenDelete, setKeyToDoDelete} = useHandleModalContext()
 
     return (
         <Draggable draggableId={toDo.id} index={index}>
@@ -108,6 +108,7 @@ const CardToDo = ({toDo, index}: props) => {
                                 alt="delete"
                                 width={20}
                                 height={10}
+                                onClick={() => {setIsOpenDelete(true); setKeyToDoDelete(toDo.id)}}
                             />
                         </div>
                     </div>            
