@@ -18,7 +18,7 @@ const SideBar = ({iconSite}: Props) => {
                 <div className="h-[10.5%] h-max-[112px]">
                     <Link href={'/'}  onClick={() => setKeyToDo('')}>
                         <Image
-                            className="hover:rotate-[360deg] transition-all duration-500 w-64"
+                            className="hover:scale-110 hover:-rotate-12 transition-all duration-500 w-64"
                             src={iconSite}
                             width={500}
                             height={70}
@@ -45,7 +45,7 @@ const SideBar = ({iconSite}: Props) => {
                             href={'/onTime'}
                         >
                             <Image 
-                                className="hover:invert hover:scale-110 duration-300 w-6/12 max-w-20 m-auto" 
+                                className="hover:invert hover:scale-125 duration-500 w-6/12 max-w-20 m-auto hover:-rotate-[360deg]" 
                                 src={'/activity.png'} 
                                 width={400} 
                                 height={400}
@@ -70,7 +70,7 @@ const SideBar = ({iconSite}: Props) => {
                             href={'/nearDeadLine'}
                         >
                             <Image 
-                                className="hover:invert hover:scale-110 duration-300 w-6/12 max-w-20 h-auto m-auto" 
+                                className="hover:invert hover:scale-125 duration-300 w-6/12 max-w-20 h-auto m-auto hover:-rotate-[360deg]" 
                                 src={'/alert.png'} 
                                 alt="deadlines tasks"
                                 width={400}
@@ -85,7 +85,7 @@ const SideBar = ({iconSite}: Props) => {
                             href={'/overdue'}
                         >
                             <Image 
-                                className="hover:invert hover:scale-110 duration-300 w-6/12 max-w-20 m-auto" 
+                                className="hover:invert hover:scale-125 duration-500 w-6/12 max-w-20 m-auto hover:-rotate-[360deg]" 
                                 src={'/pending.png'} 
                                 width={400} 
                                 height={400}
