@@ -82,17 +82,15 @@ class ToDoController extends Controller
             date('Y-m-d', strtotime('+1 week', strtotime('now')))
         )->get();
 
-        return response()->json($toDo->count(), Response::HTTP_OK);
+        return response()->json(ToDoResource::collection($toDo), Response::HTTP_OK);
     }    
 
     public function getNearDeadLine() {
 
-        $toDo = $this->toDo->where('due_date', 
-            '<=', 
-            date('Y-m-d', strtotime('+1 week', strtotime('now')))
-        )->where('due_date', 
-            '>=', date('Y-m-d', strtotime('+1 week', strtotime('now'))))
-            ->get();
+        $toDo = $this->toDo->where('due_date', '>=', date('Y-m-d'))
+                    ->where('due_date', '<=', date('Y-m-d', strtotime('+1 week')))
+                    ->get();
+
 
         return response()->json(ToDoResource::collection( $toDo ), Response::HTTP_OK);
 

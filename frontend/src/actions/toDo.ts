@@ -16,6 +16,12 @@ export async function getDeadLines(): Promise<deadLineType> {
     return res.data
 }
 
+export async function getOnTime(): Promise<toDoType[]> {
+    const res = await api.get('/getOnTime')
+    console.log(res.data)
+    return res.data
+}
+
 export async function  getCostsToDos(): Promise<deadLineType> {
     const res = await api.get('/costsToDos')
     return res.data
@@ -40,3 +46,4 @@ export async function updateToDo(form: FormData, id: string|number): Promise<toD
 
     return resp.data
 }
+

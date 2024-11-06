@@ -43,7 +43,6 @@ const SideBar = ({iconSite}: Props) => {
                     <div className="h-[10%] h-max-[100px]">
                         <Link
                             href={'/onTime'}
-                            target="_blank"
                         >
                             <Image 
                                 className="hover:invert hover:scale-110 duration-300 w-6/12 max-w-20 m-auto" 
