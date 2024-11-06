@@ -29,11 +29,12 @@ const Skeleton = ({children}: Props) => {
         e.preventDefault()
         const formData = new FormData(e.currentTarget);
         try {
-            storeToDo(formData)
+            await storeToDo(formData)
             setIsOpen(false)
         } catch (error) {
             console.log('Erro ao enviar tarefa: ', error)
         }
+        window.location.reload()
     }
 
     return (
