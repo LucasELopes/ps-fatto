@@ -102,7 +102,7 @@ class ToDoController extends Controller
             date('Y-m-d', strtotime('now'))
         )->get();
 
-        return response()->json($toDo->count(), Response::HTTP_OK);
+        return response()->json(ToDoResource::collection($toDo), Response::HTTP_OK);
     }
 
     /**

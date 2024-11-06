@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react";
-import { getOnTime } from "@/actions/toDo";
+import { getNearDeadLine} from "@/actions/toDo";
 import ListToDos from "../toDos/_components/ListToDo";
 import { toDoType } from "@/types/toDo";
 
@@ -10,7 +10,7 @@ export default function Home() {
     const [toDos, setToDos] = useState<toDoType[]>()
 
     useEffect(() => {
-        getOnTime().then((data) => setToDos(data))
+        getNearDeadLine().then((data) => setToDos(data))
     }, [])
 
     if(toDos?.length) {

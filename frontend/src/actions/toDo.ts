@@ -22,6 +22,17 @@ export async function getOnTime(): Promise<toDoType[]> {
     return res.data
 }
 
+export async function getNearDeadLine(): Promise<toDoType[]> {
+    const res = await api.get('/getNearDeadLine')
+    return res.data
+}
+
+export async function getOverDue(): Promise<toDoType[]> {
+    const res = await api.get('/getOverdue')
+    return res.data
+}
+
+
 export async function  getCostsToDos(): Promise<deadLineType> {
     const res = await api.get('/costsToDos')
     return res.data

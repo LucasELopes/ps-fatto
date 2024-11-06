@@ -67,8 +67,7 @@ const SideBar = ({iconSite}: Props) => {
                     </div>
                     <div className="h-[10%] max-h-[100px]">
                         <Link
-                            href={'https://google.com'}
-                            target="_blank"
+                            href={'/nearDeadLine'}
                         >
                             <Image 
                                 className="hover:invert hover:scale-110 duration-300 w-6/12 max-w-20 h-auto m-auto" 
@@ -83,8 +82,7 @@ const SideBar = ({iconSite}: Props) => {
 
                     <div className="h-[10%] h-max-[100px]">
                         <Link
-                            href={'https://google.com'}
-                            target="_blank"
+                            href={'/overdue'}
                         >
                             <Image 
                                 className="hover:invert hover:scale-110 duration-300 w-6/12 max-w-20 m-auto" 

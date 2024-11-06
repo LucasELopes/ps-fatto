@@ -12,11 +12,29 @@ type Props = {
 }
 
 const ListToDos = ({toDosProps}: Props) => {
+
     const { keyTodo, setKeyToDo } = useSearchToDoContext();
     
     const [toDos, setToDos] = useState<toDoType[]>([]);
     const [toDosShow, setToDosShow] = useState<toDoType[] | null>(null);
     const [loading, setLoading] = useState<boolean>(true)
+
+    function reorder<T>(list:T[], startIndex: number, endIndex: number) {
+        const result = Array.from(list)
+        const [remove] = result.splice(startIndex, 1)
+        result.splice(endIndex, 0, remove)
+
+        return result;
+    }    
+
+    const onDragEnd = (result: any) => {
+        if(!result.destination) {
+            return 
+        }
+
+        const items = reorder(toDos, result.source.index, result.destination.index)
+        setToDos(items)
+    }
 
     if(!toDosProps) {
         useEffect(() => {
@@ -27,6 +45,26 @@ const ListToDos = ({toDosProps}: Props) => {
                 }
                 setLoading(false)
             }, [keyTodo]);
+    }else if(toDosProps) {
+
+        return (
+            <DragDropContext onDragEnd={onDragEnd}>
+                <Droppable droppableId="tasks" type="list" direction="vertical">
+                    {(provided) => (
+                        <div
+                            ref={provided.innerRef}
+                            {...provided.droppableProps}
+                        >
+                            {toDosProps.length > 0 && toDosProps.map((toDo, index) => ( 
+                                <CardToDo key={toDo.id} toDo={toDo} index={index}/>
+                            ))}
+                        {provided.placeholder}
+                        </div>
+                    )}
+                </Droppable>
+            </DragDropContext>       
+        );
+
     }
 
     if(loading) {
@@ -62,25 +100,8 @@ const ListToDos = ({toDosProps}: Props) => {
         }
     }
     else if(!keyTodo) {
-
-        function reorder<T>(list:T[], startIndex: number, endIndex: number) {
-            const result = Array.from(list)
-            const [remove] = result.splice(startIndex, 1)
-            result.splice(endIndex, 0, remove)
-
-            return result;
-        }    
-
-        const onDragEnd = (result: any) => {
-            if(!result.destination) {
-                return 
-            }
-
-            const items = reorder(toDos, result.source.index, result.destination.index)
-            setToDos(items)
-        }
-
         if (toDos.length > 0) { // Exibe todas as tarefas
+
             return (
                 <DragDropContext onDragEnd={onDragEnd}>
                     <Droppable droppableId="tasks" type="list" direction="vertical">
@@ -89,8 +110,8 @@ const ListToDos = ({toDosProps}: Props) => {
                                 ref={provided.innerRef}
                                 {...provided.droppableProps}
                             >
-                                {toDos.map((toDo, index) => ( 
-                                    <CardToDo key={'CardToDo'+toDo.id} toDo={toDo} index={index}/>
+                                {toDos.length > 0 && toDos.map((toDo, index) => ( 
+                                    <CardToDo key={toDo.id} toDo={toDo} index={index}/>
                                 ))}
                             {provided.placeholder}
                             </div>
@@ -99,7 +120,7 @@ const ListToDos = ({toDosProps}: Props) => {
                 </DragDropContext>       
             );
         }
-        else if(toDos.length === 0 && !toDosShow){
+        else if(toDos.length === 0 && !toDosShow && !toDosProps){
             return (
                 <div className="
                 overflow-y-hidden w-[calc(100vw-3.5rem)] md:w-[calc(100vw-6%)] h-[calc(100vh-6rem)] 
