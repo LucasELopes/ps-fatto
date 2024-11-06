@@ -13,9 +13,8 @@ type Props = {
 
 const Modal = ({ modalTitle, handleSubmit, toDoInformation, readonly }: Props) => {
     
-    const currentDate = new Intl.DateTimeFormat('en-US').format(new Date())
+    const currentDate = new Intl.DateTimeFormat('en-CA').format(new Date())
 
-    // alert(currentDate)
     const { isOpen, setIsOpen, setTitleModal, setToDoInformation, setReadOnly, readOnly } = useHandleModalContext()
 
     const [toDoStream, setToDoStream] = useState<toDoType>({
@@ -129,7 +128,11 @@ const Modal = ({ modalTitle, handleSubmit, toDoInformation, readonly }: Props) =
                             type="date" 
                             name="due_date"
                             readOnly={readonly}
-                            value={toDoStream?.due_date ? new Date(toDoStream.due_date).toLocaleString().split('T')[0] : ''}
+                            value={new Intl.DateTimeFormat('en-CA')
+                                    .format(toDoStream?.due_date ? new Date(toDoStream.due_date)
+                                    .getTime() + 86400000 
+                                    : new Date().getTime() + 86400000)
+                                }
                             onChange={handleInputChange}
                             placeholder="Insira o nome da tarefa"
                             className="border border-indigo-200 rounded-lg px-2 text-center font-normal"

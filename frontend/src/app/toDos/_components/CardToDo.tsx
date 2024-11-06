@@ -14,6 +14,7 @@ const CardToDo = ({toDo}: props) => {
     const diffInMs = dueDate.getTime() - currentDate.getTime()
 
     const weekInMs = 604800000
+    const day = weekInMs/7
 
     const {isOpen, setIsOpen, setTitleModal, setToDoInformation, setReadOnly} = useHandleModalContext()
 
@@ -70,7 +71,7 @@ const CardToDo = ({toDo}: props) => {
                         Entrega
                     </div>
                     <div className={`overflow-hidden text-nowrap text-center font-semibold ${diffInMs > weekInMs  ? 'text-black' : (diffInMs < weekInMs && diffInMs > -86400000 )  ? 'text-orange-400' : 'text-red-600 font-bold'}`}>
-                        {new Date(toDo.due_date).toLocaleDateString('en-CA')}
+                        {new Intl.DateTimeFormat('pt-BR').format(new Date(toDo.due_date).getTime() + day)}
                     </div>
                 </div>
                 <div className="col-span-1 flex items-center justify-center gap-x-3 z-50">

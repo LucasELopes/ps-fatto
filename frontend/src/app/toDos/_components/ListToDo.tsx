@@ -26,7 +26,6 @@ const ListToDos = ({toDosProps}: Props) => {
                     allToDo().then((data) => setToDos(data));
                 } else {
                     searchToDo(keyTodo).then((data) => setToDosShow(data));
-                    // console.log(toDosShow)
                 }
                 setLoading(false)
             }, [keyTodo]);

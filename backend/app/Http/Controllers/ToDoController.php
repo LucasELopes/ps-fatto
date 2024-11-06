@@ -43,20 +43,19 @@ class ToDoController extends Controller
         $toDos = $this->toDo->all();
 
         $dateCurrent = date('Y-m-d', strtotime('now'));
+        $dateCurrentWeek = date('Y-m-d',strtotime('+1 week', strtotime($dateCurrent)));
 
         foreach ($toDos as $toDo) {
-            if($toDo['due_date'] >= $dateCurrent) {
-                if(date('Y-m-d', 
-                strtotime('-1 week', strtotime($toDo['due_date']))) == $dateCurrent) 
-                {
+            if($toDo['due_date'] < $dateCurrent) {
+                $deadline['overdue']++;
+            }
+            else {
+                if($dateCurrentWeek >= $toDo['due_date']) {
                     $deadline['nearDeadLine']++;
                 }
                 else {
                     $deadline['onTime']++;
                 }
-            }
-            else {
-                $deadline['overdue']++;
             }
         }
 
@@ -83,7 +82,7 @@ class ToDoController extends Controller
             date('Y-m-d', strtotime('+1 week', strtotime('now')))
         )->get();
 
-        return response()->json(ToDoResource::collection( $toDo ), Response::HTTP_OK);
+        return response()->json($toDo->count(), Response::HTTP_OK);
     }    
 
     public function getNearDeadLine() {
@@ -105,7 +104,7 @@ class ToDoController extends Controller
             date('Y-m-d', strtotime('now'))
         )->get();
 
-        return response()->json(ToDoResource::collection( $toDo ), Response::HTTP_OK);
+        return response()->json($toDo->count(), Response::HTTP_OK);
     }
 
     /**
