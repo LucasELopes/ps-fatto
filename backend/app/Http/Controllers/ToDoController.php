@@ -62,27 +62,9 @@ class ToDoController extends Controller
         return response()->json($deadline, Response::HTTP_OK);
     }
 
-    public function costsToDos(): JsonResponse {
-        $year = date('Y');
-        $monthlyCounts = [];
-    
-        // Loop de 1 a 12 para contar os registros de cada mês do ano atual
-        for ($month = 1; $month <= 12; $month++) {
-            $count = $this->toDo
-                ->whereYear('due_date', $year)
-                ->whereMonth('due_date', $month)
-                ->count();
-            
-            // Armazena o mês e o número de registros no array
-            $monthlyCounts[] = [
-                'month' => $month,
-                'count' => $count,
-            ];
-        }
-    
-        return response()->json($monthlyCounts, Response::HTTP_OK);
+    public function costsToDos() {
+        return [];
     }
-    
     
     public function getOnTime() {
 
