@@ -17,7 +17,7 @@ const Home = () => {
         .then((res) => {setDeadline(res)})
 
         getCostsToDos()
-        .then((res) => {setCostsToDos(res)}) 
+        .then((res) => {console.log(res)}) 
     },[])
 
     return (

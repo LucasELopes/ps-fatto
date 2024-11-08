@@ -14,6 +14,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        ToDo::factory(200)->create();
+        ToDo::factory(100)->create();
     }
 }

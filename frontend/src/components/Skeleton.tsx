@@ -52,7 +52,7 @@ const Skeleton = ({children}: Props) => {
         } catch (error) {
             console.log('Erro ao atualizar a tarafa: ', error)
         }
-        // window.location.reload()
+        window.location.reload()
     }
 
     return (
