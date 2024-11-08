@@ -22,9 +22,10 @@ const ModalUpdate = ({ modalTitle, handleSubmit, toDoInformation, readonly }: Pr
         name: toDoInformation?.name || "",
         description: toDoInformation?.description || "",
         cost: toDoInformation?.cost || 0,
-        order: toDoInformation?.order || 0,
-        due_date: toDoInformation?.due_date || currentDate,
-    })
+        order: toDoInformation?.order ? new Date(toDoInformation.order) : new Date(currentDate),
+        due_date: toDoInformation?.due_date ? new Date(toDoInformation.due_date) : new Date(currentDate),
+    });
+    
 
     useEffect(() => {
         if (toDoInformation) {

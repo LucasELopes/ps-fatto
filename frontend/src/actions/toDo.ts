@@ -33,7 +33,7 @@ export async function getOverDue(): Promise<toDoType[]> {
 }
 
 
-export async function  getCostsToDos(): Promise<deadLineType> {
+export async function  getCostsToDos(): Promise<costsToDosType> {
     const res = await api.get('/costsToDos')
     return res.data
 }

@@ -19,15 +19,6 @@ const Modal = ({ modalTitle, handleSubmit, toDoInformation, readonly }: Props) =
 
     const [toDoStream, setToDoStream] = useState<toDoType>()
 
-
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        const { name, value } = e.target
-        setToDoStream(prev => ({
-            ...prev,
-            [name]: value
-        }))
-    }
-
     return (
         <div className="bg-gray-400 bg-opacity-55 w-screen h-screen fixed top-0 left-0 flex justify-center items-center z-50">
             <dialog open 
@@ -63,7 +54,6 @@ const Modal = ({ modalTitle, handleSubmit, toDoInformation, readonly }: Props) =
                             readOnly={readonly}
                             placeholder="Insira o nome da tarefa"
                             className="border border-indigo-200 rounded-lg px-2 text-center font-normal"
-                            onChange={handleInputChange}
                             required
                         />
                     </label>
@@ -75,7 +65,6 @@ const Modal = ({ modalTitle, handleSubmit, toDoInformation, readonly }: Props) =
                             readOnly={readonly}
                             placeholder="Insira a descrição da tarefa"
                             className="border border-indigo-200 rounded-lg px-2 text-center font-normal min-h-[100px] max-h-[200px]"
-                            onChange={handleInputChange}
                             maxLength={255}
                         />
                     </label>
@@ -88,7 +77,6 @@ const Modal = ({ modalTitle, handleSubmit, toDoInformation, readonly }: Props) =
                             type="number" 
                             name="cost"
                             readOnly={readonly}
-                            onChange={handleInputChange}
                             placeholder="Insira o custo da tarefa"
                             className="border border-indigo-200 rounded-lg px-2 text-center font-normal"
                             required
@@ -103,7 +91,6 @@ const Modal = ({ modalTitle, handleSubmit, toDoInformation, readonly }: Props) =
                             type="date" 
                             name="due_date"
                             readOnly={readonly}
-                            onChange={handleInputChange}
                             placeholder="Insira o nome da tarefa"
                             className="border border-indigo-200 rounded-lg px-2 text-center font-normal"
                             min={currentDate}
