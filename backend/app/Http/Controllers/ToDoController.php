@@ -114,7 +114,7 @@ class ToDoController extends Controller
         $data['order'] = date('Y-m-d H:i:s', strtotime('now'));
         $toDo = $this->toDo->create($data);
 
-        return response()->json($data, Response::HTTP_CREATED);
+        return response()->json(ToDoResource::make($toDo), Response::HTTP_CREATED);
     }
 
     /**
@@ -135,12 +135,12 @@ class ToDoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateToDoRequest $request, $id): JsonResponse
+    public function update(UpdateToDoRequest $request, $id)
     {
         $data = $request->validated();
         
         $toDo = $this->toDo->findOrFail($id);
-
+        
         $toDo->update($data);
 
         return response()->json(ToDoResource::make($toDo), Response::HTTP_OK);        
