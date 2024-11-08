@@ -9,10 +9,10 @@ type Props = {
 const ModalDelete = ({id}: Props) => {
     
     const {isOpenDelete, setIsOpenDelete} = useHandleModalContext()
-    const deleteTask = (id: number|string) => {
-        deleteToDo(id)
-        window.location.reload()
+    const deleteTask = async (id: number|string) => {
+        await deleteToDo(id)
         setIsOpenDelete(!isOpenDelete)
+        window.location.reload()
     }
 
     if(isOpenDelete) {

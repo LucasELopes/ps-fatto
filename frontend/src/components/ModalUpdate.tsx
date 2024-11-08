@@ -6,19 +6,38 @@ import { useState, useEffect } from "react"
 
 type Props = {
     modalTitle: string
-    handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void
+    handleSubmit: (e: React.FormEvent<HTMLFormElement>, id: string|number) => void
     toDoInformation?: toDoType
     readonly: boolean
 }
 
-const Modal = ({ modalTitle, handleSubmit, toDoInformation, readonly }: Props) => {
+const ModalUpdate = ({ modalTitle, handleSubmit, toDoInformation, readonly }: Props) => {
     
     const currentDate = new Intl.DateTimeFormat('en-CA').format(new Date())
 
     const { isOpen, setIsOpen, setTitleModal, setToDoInformation, setReadOnly, readOnly } = useHandleModalContext()
 
-    const [toDoStream, setToDoStream] = useState<toDoType>()
+    const [toDoStream, setToDoStream] = useState<toDoType>({
+        id: toDoInformation?.id || "",
+        name: toDoInformation?.name || "",
+        description: toDoInformation?.description || "",
+        cost: toDoInformation?.cost || 0,
+        order: toDoInformation?.order || 0,
+        due_date: toDoInformation?.due_date || currentDate,
+    })
 
+    useEffect(() => {
+        if (toDoInformation) {
+            setToDoStream({
+                id: toDoInformation.id,
+                name: toDoInformation.name,
+                description: toDoInformation.description,
+                cost: toDoInformation.cost,
+                order: toDoInformation.order,
+                due_date: toDoInformation.due_date,
+            })
+        }
+    }, [toDoInformation])
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target
@@ -51,7 +70,7 @@ const Modal = ({ modalTitle, handleSubmit, toDoInformation, readonly }: Props) =
                 <div>
                     <h2 className="font-bold text-indigo-400 text-3xl">{modalTitle}</h2>
                 </div>
-                <form method="post" onSubmit={handleSubmit} className="w-11/12 h-5/6 m-auto my-1 flex flex-col justify-around gap-5">
+                <form method="put" onSubmit={async (e) => {handleSubmit(e, toDoStream?.id || ''); setToDoInformation(null)}} className="w-11/12 h-5/6 m-auto my-1 flex flex-col justify-around gap-5">
                     <label htmlFor="name" className="flex flex-col text-gray-400 font-bold">
                         <div>
                             Título da tarefa<span className="text-red-300">*</span> 
@@ -63,6 +82,7 @@ const Modal = ({ modalTitle, handleSubmit, toDoInformation, readonly }: Props) =
                             readOnly={readonly}
                             placeholder="Insira o nome da tarefa"
                             className="border border-indigo-200 rounded-lg px-2 text-center font-normal"
+                            value={toDoStream.name}
                             onChange={handleInputChange}
                             required
                         />
@@ -75,6 +95,7 @@ const Modal = ({ modalTitle, handleSubmit, toDoInformation, readonly }: Props) =
                             readOnly={readonly}
                             placeholder="Insira a descrição da tarefa"
                             className="border border-indigo-200 rounded-lg px-2 text-center font-normal min-h-[100px] max-h-[200px]"
+                            value={toDoStream.description}
                             onChange={handleInputChange}
                             maxLength={255}
                         />
@@ -88,6 +109,7 @@ const Modal = ({ modalTitle, handleSubmit, toDoInformation, readonly }: Props) =
                             type="number" 
                             name="cost"
                             readOnly={readonly}
+                            value={toDoStream.cost}
                             onChange={handleInputChange}
                             placeholder="Insira o custo da tarefa"
                             className="border border-indigo-200 rounded-lg px-2 text-center font-normal"
@@ -103,6 +125,11 @@ const Modal = ({ modalTitle, handleSubmit, toDoInformation, readonly }: Props) =
                             type="date" 
                             name="due_date"
                             readOnly={readonly}
+                            value={new Intl.DateTimeFormat('en-CA')
+                                    .format(toDoStream?.due_date ? new Date(toDoStream.due_date)
+                                    .getTime() + 86400000 
+                                    : new Date().getTime() + 86400000)
+                                }
                             onChange={handleInputChange}
                             placeholder="Insira o nome da tarefa"
                             className="border border-indigo-200 rounded-lg px-2 text-center font-normal"
@@ -127,4 +154,4 @@ const Modal = ({ modalTitle, handleSubmit, toDoInformation, readonly }: Props) =
     )
 }
 
-export default Modal
+export default ModalUpdate

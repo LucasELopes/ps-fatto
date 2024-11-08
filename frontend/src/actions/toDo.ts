@@ -52,15 +52,19 @@ export async function storeToDo(form: FormData) {
     return resp.data
 }
 
-export async function updateToDo(form: FormData, id: string|number): Promise<toDoType> {
-    const resp = await api.put(`/toDos/${id}`, form)
-
-    return resp.data
+export async function updateToDo(form: FormData, id: string | number) {
+    try {
+        const resp = await api.put(`/toDos/${id}`, form);
+        return resp.data;
+    } catch (error) {
+        console.error("Erro na atualização da tarefa:", error);
+        throw error;
+    }
 }
+
 
 export async function deleteToDo(param: string | number) {
     const resp = await api.delete(`/toDos/${param}`)
-
     return resp.data
 }
 

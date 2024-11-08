@@ -85,7 +85,7 @@ const CardToDo = ({toDo, index}: props) => {
                             <Image
                                 className="cursor-pointer hover:scale-150 duration-200 z-50"
                                 src={'/eye.png'}
-                                alt="add"
+                                alt="view"
                                 width={20}
                                 height={10}
                                 onClick={() => {setIsOpen(!isOpen); setTitleModal('Visualizar Tarefa'); setToDoInformation(toDo); setReadOnly(true)}}

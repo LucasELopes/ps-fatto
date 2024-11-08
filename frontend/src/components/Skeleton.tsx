@@ -6,11 +6,12 @@ import SideBar from "./SideBar";
 import Charts from "./ChartPie";
 import { toDoType } from "@/types/toDo";
 import ListToDos from "@/app/toDos/_components/ListToDo";
-import { searchToDo, storeToDo } from "@/actions/toDo";
+import { searchToDo, storeToDo, updateToDo } from "@/actions/toDo";
 import Modal from "./Modal";
 import { HandleModalContext } from "@/app/contexts/HandleModalContext";
 import { SearchToDoContext } from "@/app/contexts/SearchToDoContext";
 import ModalDelete from "./ModalDelete";
+import ModalUpdate from "./ModalUpdate";
 
 type Props = {
     children?: ReactNode;
@@ -42,6 +43,18 @@ const Skeleton = ({children}: Props) => {
         window.location.reload()
     }
 
+    const handleSubmitUpdateToDo = async(e: React.FormEvent<HTMLFormElement>, id: number|string) => {
+        e.preventDefault()
+        const formData = new FormData(e.currentTarget)
+        try {
+            updateToDo(formData, id).then((data) => console.log(data))
+            setIsOpen(false)
+        } catch (error) {
+            console.log('Erro ao atualizar a tarafa: ', error)
+        }
+        // window.location.reload()
+    }
+
     return (
         <HandleModalContext.Provider value={{isOpen, setIsOpen, titleModal, 
                                                 setTitleModal, setToDoInformation, readOnly, 
@@ -57,14 +70,15 @@ const Skeleton = ({children}: Props) => {
                             <div className="w-full ml-14 md:ml-[5%]">
                                 <Header/>
                             <div>
-                                {isOpen && toDoInformation  &&
-                                    <Modal 
+                                {isOpen && toDoInformation &&
+                                    <ModalUpdate 
                                         modalTitle={titleModal} 
-                                        handleSubmit={handleSubmitToDo} 
+                                        handleSubmit={handleSubmitUpdateToDo} 
                                         toDoInformation={toDoInformation} 
                                         readonly={readOnly}
                                     /> 
                                 }
+
                                 {isOpen && !toDoInformation && 
                                     <Modal 
                                         modalTitle={titleModal} 
