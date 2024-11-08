@@ -1,4 +1,4 @@
 export type costsToDosMonthType = {
-    month: string
+    month: number
     count: number
 }
