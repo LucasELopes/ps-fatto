@@ -8,19 +8,19 @@ type Props = {
   deadlines?: deadLineType
   costTodos?: costsToDosType
   labels?: string[]
+  color?: string[]
 }
 
 const Chart = dynamic(() => import('react-apexcharts'), {
   ssr: false
 })
 
-const ChartPie = ({deadlines, costTodos, labels}: Props) => {
+const ChartPie = ({deadlines, costTodos, labels, color}: Props) => {
 
   const options = {
     chart: {
       id: 'donut',
     },
-    colors: [ '#54d754', '#e5e552', '#d75a54']
   }
   
   if (deadlines) {
@@ -29,7 +29,7 @@ const ChartPie = ({deadlines, costTodos, labels}: Props) => {
       <div>
         <Chart 
           className="bg-gray-100 shadow-lg p-2 min-w-[450px] max-w-[520px] m-2 rounded-md"
-          options={{...options, labels: labels}} 
+          options={{...options, labels: labels, colors: color}} 
           series={series} 
           type="donut" 
           height={400} 
@@ -44,7 +44,7 @@ const ChartPie = ({deadlines, costTodos, labels}: Props) => {
       <div>
         <Chart 
           className="bg-gray-100 shadow-lg p-2 min-w-[450px] max-w-[520px] m-2 rounded-md"
-          options={{...options, labels: labels}} 
+          options={{...options, labels: labels, colors: color}} 
           series={series} 
           type="donut" 
           height={400} 

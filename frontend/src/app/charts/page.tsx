@@ -30,10 +30,10 @@ const Home = () => {
         <div className="flex justify-center items-center h-screen">
             <div>
                 <div>
-                    <ChartPie deadlines={deadline} labels ={[ 'Tarefas no prazo', 'Tarefas perto do prazo', 'Tarefas atrasadas']}/>
+                    <ChartPie deadlines={deadline} labels ={[ 'Tarefas no prazo', 'Tarefas perto do prazo', 'Tarefas atrasadas']} color={[ '#54d754', '#e5e552', '#d75a54']}/>
                 </div>
                 <div>
-                    <ChartPie costTodos={costsToDo}  labels ={[ 'Abaixo de R$ 600', 'Menor ou igual a R$1000', 'Acima de R$1000']}/>
+                    <ChartPie costTodos={costsToDo}  labels ={[ 'Abaixo de R$ 600', 'Menor ou igual a R$1000', 'Acima de R$1000']} color={[ '#7adcde', '#4a79d7', '#3207de']}/>
                 </div>
             </div>
             <div>
