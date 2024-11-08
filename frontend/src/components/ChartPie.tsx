@@ -7,19 +7,19 @@ import dynamic from "next/dynamic";
 type Props = {
   deadlines?: deadLineType
   costTodos?: costsToDosType
+  labels?: string[]
 }
 
 const Chart = dynamic(() => import('react-apexcharts'), {
   ssr: false
 })
 
-const ChartPie = ({deadlines, costTodos}: Props) => {
+const ChartPie = ({deadlines, costTodos, labels}: Props) => {
 
   const options = {
     chart: {
       id: 'donut',
     },
-    labels: [ 'Abaixo de R$ 600', 'Menor ou igual a R$1000', 'Acima de R$1000'],
     colors: [ '#54d754', '#e5e552', '#d75a54']
   }
   
@@ -29,7 +29,7 @@ const ChartPie = ({deadlines, costTodos}: Props) => {
       <div>
         <Chart 
           className="bg-gray-100 shadow-lg p-2 min-w-[450px] max-w-[520px] m-2 rounded-md"
-          options={options} 
+          options={{...options, labels: labels}} 
           series={series} 
           type="donut" 
           height={400} 
@@ -44,7 +44,7 @@ const ChartPie = ({deadlines, costTodos}: Props) => {
       <div>
         <Chart 
           className="bg-gray-100 shadow-lg p-2 min-w-[450px] max-w-[520px] m-2 rounded-md"
-          options={options} 
+          options={{...options, labels: labels}} 
           series={series} 
           type="donut" 
           height={400} 

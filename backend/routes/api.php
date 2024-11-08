@@ -18,6 +18,7 @@ Route::get('/costsToDos', [ToDoController::class, 'costsToDos']);
 Route::get('/getOnTime', [ToDoController::class, 'getOnTime']);
 Route::get('/getOverdue', [ToDoController::class, 'getOverdue']);
 Route::get('/getNearDeadLine', [ToDoController::class, 'getNearDeadLine']);
+Route::get('/costsToDosMonth', [ToDoController::class, 'costsToDosMonth']);
 
 
 Route::get('/', function () {

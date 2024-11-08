@@ -80,6 +80,20 @@ class ToDoController extends Controller
     
         return response()->json($costCategories, 200);
     }
+
+    public function costsToDosMonth() {
+        $year = date('Y');
+
+        $todoCounts = $this->toDo
+            ->selectRaw("EXTRACT(MONTH FROM due_date) as month, COUNT(*) as count")
+            ->whereRaw("EXTRACT(YEAR FROM due_date) = ?", [$year])
+            ->groupBy('month')
+            ->orderBy('month')
+            ->get();
+
+        return response()->json($todoCounts, Response::HTTP_OK);
+
+    }
     
     public function getOnTime() {
 
