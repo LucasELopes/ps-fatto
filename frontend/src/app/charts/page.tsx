@@ -26,7 +26,7 @@ const Home = () => {
                 <ChartPie deadlines={deadline}/>
             </div>
             <div>
-                <ChartPie deadlines={costsToDos}/>
+                <ChartPie costTodos={costsToDos}/>
             </div>
         </div>
     )
