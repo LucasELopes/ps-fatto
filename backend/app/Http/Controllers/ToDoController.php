@@ -63,7 +63,22 @@ class ToDoController extends Controller
     }
 
     public function costsToDos() {
-        return [];
+        $costCategories = [
+            'below' => $this->toDo
+                ->where('cost', '<', 600)
+                ->count(),
+    
+            'between' => $this->toDo
+                ->where('cost', '>=', 600)
+                ->where('cost', '<=', 1000)
+                ->count(),
+    
+            'above' => $this->toDo
+                ->where('cost', '>', 1000)
+                ->count(),
+        ];
+    
+        return response()->json($costCategories, 200);
     }
     
     public function getOnTime() {

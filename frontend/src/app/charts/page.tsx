@@ -1,7 +1,7 @@
 'use client'
 
 import { getCostsToDos, getDeadLines } from "@/actions/toDo";
-import ChartLine from "@/components/ChartLine";
+// import ChartLine from "@/components/ChartLine";
 import ChartPie from "@/components/ChartPie";
 import { costsToDosType } from "@/types/costsTodos";
 import { deadLineType } from "@/types/deadLine";
@@ -17,7 +17,7 @@ const Home = () => {
         .then((res) => {setDeadline(res)})
 
         getCostsToDos()
-        .then((res) => {console.log(res)}) 
+        .then((res) => {setCostsToDos(res)}) 
     },[])
 
     return (
@@ -26,7 +26,7 @@ const Home = () => {
                 <ChartPie deadlines={deadline}/>
             </div>
             <div>
-                <ChartLine costsTodos={costsToDos}/>
+                <ChartPie deadlines={costsToDos}/>
             </div>
         </div>
     )

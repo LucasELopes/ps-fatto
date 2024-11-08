@@ -1,4 +1,5 @@
 export type costsToDosType = {
-    month: number
-    count: number
+    below: number
+    between: number
+    above: number
 }
