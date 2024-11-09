@@ -38,7 +38,7 @@ const CardToDo = ({toDo, index}: props) => {
                 <div className={`
                     ${toDo.cost < 1000 ? 'bg-indigo-100' : 'bg-indigo-200'} 
                     col-span-7 max-w-[1280px] m-auto md:rounded-xl p-2 grid grid-cols-12 outline-2 hover:outline-indigo-400 hover:outline
-                    shadow-md hover:scale-110 transition-all duration-300 py-4 relative 
+                    shadow-md hover:scale-110 transition-all duration-300 py-4 relative w-full 
                     `}>
                     <div className={`
                         ${toDo.cost < 1000 ? 'bg-indigo-100' : 'bg-indigo-200'} 
