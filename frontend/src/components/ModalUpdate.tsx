@@ -73,6 +73,19 @@ const ModalUpdate = ({ modalTitle, handleSubmit, toDoInformation, readonly }: Pr
                 </div>
                 <form method="put" onSubmit={async (e) => {handleSubmit(e, toDoStream?.id || ''); setToDoInformation(null)}} className="w-11/12 h-5/6 m-auto my-1 flex flex-col justify-around gap-5">
                     <label htmlFor="name" className="flex flex-col text-gray-400 font-bold">
+                        {modalTitle === 'Visualizar Tarefa' &&
+                            <div>
+                                <label>
+                                    Id da tarefa: 
+                                    <input 
+                                    type="text" 
+                                    className="border border-indigo-200 rounded-lg px-2 text-center font-normal w-full" 
+                                    value={toDoStream.id} 
+                                    readOnly={readOnly}
+                                />
+                                </label>
+                            </div>
+                        }
                         <div>
                             Título da tarefa<span className="text-red-300">*</span> 
                         </div>
