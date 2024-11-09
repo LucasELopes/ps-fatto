@@ -47,12 +47,12 @@ const Skeleton = ({children}: Props) => {
         e.preventDefault()
         const formData = new FormData(e.currentTarget)
         try {
-            updateToDo(formData, id).then((data) => console.log(data))
+            formData.append('_method', 'PUT')
+            updateToDo(formData, id).finally(() => window.location.reload())
             setIsOpen(false)
         } catch (error) {
             console.log('Erro ao atualizar a tarafa: ', error)
         }
-        window.location.reload()
     }
 
     return (

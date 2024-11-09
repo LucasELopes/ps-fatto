@@ -60,7 +60,7 @@ export async function storeToDo(form: FormData) {
 
 export async function updateToDo(form: FormData, id: string | number) {
     try {
-        const resp = await api.put(`/toDos/${id}`, form);
+        const resp = await api.post(`/toDos/${id}`, form);
         return resp.data;
     } catch (error) {
         console.error("Erro na atualização da tarefa:", error);
