@@ -27,7 +27,7 @@ const ModalDelete = ({id}: Props) => {
                     "
                 >
                         <p className=" text-gray-400 font-bold">
-                            Deseja realmente excluir a tarefa:
+                            Ralmente deseja excluir a tarefa:
                         </p>
                         <div className="flex justify-center gap-4">
                             <button 

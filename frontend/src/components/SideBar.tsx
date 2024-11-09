@@ -18,7 +18,7 @@ const SideBar = ({iconSite}: Props) => {
                 <div className="h-[10.5%] h-max-[112px]">
                     <Link href={'/'}  onClick={() => setKeyToDo('')}>
                         <Image
-                            className="hover:scale-110 hover:-rotate-12 transition-all duration-500 w-28 md:w-full m-0 fixed md:relative bottom-12 -left-2"
+                            className="md:hover:scale-110 md:hover:-rotate-12 transition-all duration-500 w-28 md:w-full m-0 fixed md:relative bottom-12 -left-7"
                             src={iconSite}
                             width={500}
                             height={70}
