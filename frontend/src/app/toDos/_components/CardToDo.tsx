@@ -81,7 +81,7 @@ const CardToDo = ({toDo, index}: props) => {
                             {new Intl.DateTimeFormat('pt-BR').format(new Date(toDo.due_date).getTime() + day)}
                         </div>
                     </div>
-                    <div className="col-span-12  md:col-span-1 flex items-center justify-end md:justify-center gap-x-3 z-30">
+                    <div className="col-span-12  md:col-span-1 flex items-center justify-end md:justify-center gap-x-3">
                         <div>
                             <Image
                                 className="cursor-pointer hover:scale-150 duration-200 z-50"
