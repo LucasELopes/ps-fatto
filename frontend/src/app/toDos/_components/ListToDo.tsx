@@ -35,11 +35,15 @@ const ListToDos = ({toDosProps}: Props) => {
         const items = reorder(toDos, result.source.index, result.destination.index)
         setToDos(items)
     }
+    
+    const handleAllToDo = async() => {
+       await (allToDo().then(async (data) => setToDos(data)));
+    } 
 
     if(!toDosProps) {
         useEffect(() => {
                 if (!keyTodo) {
-                    allToDo().then((data) => setToDos(data));
+                    handleAllToDo()
                 } else {
                     searchToDo(keyTodo).then((data) => setToDosShow(data));
                 }
@@ -103,6 +107,7 @@ const ListToDos = ({toDosProps}: Props) => {
         if (toDos.length > 0) { // Exibe todas as tarefas
 
             return (
+                <div className="mb-14">
                 <DragDropContext onDragEnd={onDragEnd}>
                     <Droppable droppableId="tasks" type="list" direction="vertical">
                         {(provided) => (
@@ -118,9 +123,10 @@ const ListToDos = ({toDosProps}: Props) => {
                         )}
                     </Droppable>
                 </DragDropContext>       
+                </div>
             );
         }
-        else if(toDos.length === 0 && !toDosShow && !toDosProps){
+        else if(toDos.length === 0 && !toDosShow && !toDosProps && !loading){
             return (
                 <div className="
                 overflow-y-hidden w-[calc(100vw-3.5rem)] md:w-[calc(100vw-6%)] h-[calc(100vh-6rem)] 

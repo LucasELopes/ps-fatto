@@ -67,30 +67,30 @@ const Skeleton = ({children}: Props) => {
                         <div className="">
                             <SideBar iconSite="/logoSite.png"></SideBar>
                         </div>
-                            <div className="w-full ml-14 md:ml-[5%]">
+                            <div className="w-full md:ml-[5%]">
                                 <Header/>
-                            <div>
-                                {isOpen && toDoInformation &&
-                                    <ModalUpdate 
-                                        modalTitle={titleModal} 
-                                        handleSubmit={handleSubmitUpdateToDo} 
-                                        toDoInformation={toDoInformation} 
-                                        readonly={readOnly}
-                                    /> 
-                                }
+                                <div>
+                                    {isOpen && toDoInformation &&
+                                        <ModalUpdate 
+                                            modalTitle={titleModal} 
+                                            handleSubmit={handleSubmitUpdateToDo} 
+                                            toDoInformation={toDoInformation} 
+                                            readonly={readOnly}
+                                        /> 
+                                    }
 
-                                {isOpen && !toDoInformation && 
-                                    <Modal 
-                                        modalTitle={titleModal} 
-                                        handleSubmit={handleSubmitToDo} 
-                                        readonly={readOnly}
-                                    /> 
-                                }
-                                {isOpenDelete &&
-                                    <ModalDelete id={keyToDoDelete}/>
-                                }
-                                {children}
-                            </div>
+                                    {isOpen && !toDoInformation && 
+                                        <Modal 
+                                            modalTitle={titleModal} 
+                                            handleSubmit={handleSubmitToDo} 
+                                            readonly={readOnly}
+                                        /> 
+                                    }
+                                    {isOpenDelete &&
+                                        <ModalDelete id={keyToDoDelete}/>
+                                    }
+                                    {children}
+                                </div>
                         </div>      
                 </div>
             </SearchToDoContext.Provider>

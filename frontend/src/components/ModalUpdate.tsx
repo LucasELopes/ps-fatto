@@ -52,7 +52,7 @@ const ModalUpdate = ({ modalTitle, handleSubmit, toDoInformation, readonly }: Pr
         <div className="bg-gray-400 bg-opacity-55 w-screen h-screen fixed top-0 left-0 flex justify-center items-center z-50">
             <dialog open 
                 className="
-                    w-3/12 m-auto backdrop:opacity-  
+                    w-11/12 md:w-3/12 m-auto backdrop:opacity-  
                     border border-indigo-400 rounded-lg 
                     px-5 py-2 flex flex-col justify-center
                     relative shadow-lg

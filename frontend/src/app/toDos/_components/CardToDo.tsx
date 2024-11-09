@@ -28,7 +28,7 @@ const CardToDo = ({toDo, index}: props) => {
                 {...provided.dragHandleProps}
                 ref={provided.innerRef}
                 key={toDo.id} 
-                className="w-full h-full grid grid-cols-12 gap-2 p-2 cursor-default my-4"
+                className="w-full h-full grid md:grid-cols-12 gap-3 p-2 cursor-default my-4"
                 
             >
                 <div className="col-span-2">
@@ -37,34 +37,35 @@ const CardToDo = ({toDo, index}: props) => {
                 </div>
                 <div className={`
                     ${toDo.cost < 1000 ? 'bg-indigo-100' : 'bg-indigo-200'} 
-                    col-span-7 max-w-[1280px] m-auto rounded-xl p-2 grid grid-cols-12 outline-2 hover:outline-indigo-400 hover:outline
-                    shadow-md  hover:scale-110 transition-all duration-300 py-4 relative 
+                    col-span-7 max-w-[1280px] m-auto md:rounded-xl p-2 grid grid-cols-12 outline-2 hover:outline-indigo-400 hover:outline
+                    shadow-md hover:scale-110 transition-all duration-300 py-4 relative 
                     `}>
                     <div className={`
                         ${toDo.cost < 1000 ? 'bg-indigo-100' : 'bg-indigo-200'} 
-                        bg-indigo-100 p-1 rounded-t-xl text-sm 
+                        rounded-t-xl text-xs p-1 w-full text-center
                         text-gray-500 overflow-hidden text-ellipsis 
                         font-bold text-nowrap absolute top-[-17px] left-0 
+                        col-span-12 md:w-auto md:text-sm
                     `}>
                         {toDo.id}
                     </div>
-                    <div className="col-span-2 overflow-hidden">
-                    <div className="text-sm text-gray-500 text-ellipsis font-bold">
+                    <div className="col-span-12 md:col-span-2 overflow-hidden">
+                    <div className="text-sm text-gray-500 text-ellipsis font-bold my-2 md:my-0">
                             Título
                         </div>
                         <div className="text-ellipsis overflow-hidden text-nowrap text-center pr-3 font-medium">
                             {toDo.name}
                         </div>
                     </div>
-                    <div className="col-span-5">
+                    <div className="col-span-12 md:col-span-5 my-1 md:my-0">
                         <div className="text-sm text-gray-500 text-ellipsis font-bold">
                             Descrição
                         </div>
-                        <div className="overflow-hidden text-nowrap text-ellipsis text-center font-medium">
+                        <div className="md:overflow-hidden h-auto max-h-24 overflow-scroll md:text-nowrap text-ellipsis text-center font-medium">
                             {toDo.description}
                         </div>
                     </div>
-                    <div className="col-span-2">
+                    <div className="col-span-12 md:col-span-2 my-1 md:my-">
                         <div className="text-sm text-gray-500 text-ellipsis font-bold">
                             Custo
                         </div>
@@ -72,7 +73,7 @@ const CardToDo = ({toDo, index}: props) => {
                             R$ {toDo.cost}
                         </div>
                     </div>
-                    <div className="col-span-2">
+                    <div className="col-span-12 md:col-span-2 my-1 md:my-0">
                         <div className="text-sm text-gray-500 text-ellipsis font-bold">
                             Entrega
                         </div>

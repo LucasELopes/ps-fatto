@@ -18,10 +18,10 @@ const Header = () => {
         <div 
             className="
                 h-16 bg-secondColor
-                flex flex-col justify-center m-auto
+                flex flex-col md:justify-center m-auto
                 md:grid md:grid-cols-12
-                items-center px-8 text-white
-                font-bold text-2xl 
+                items-center md:px-8 text-white
+                font-bold text-2xl
             "
         >
             <div className="md:col-span-1">
