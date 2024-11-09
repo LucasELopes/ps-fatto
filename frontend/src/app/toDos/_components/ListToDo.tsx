@@ -43,11 +43,11 @@ const ListToDos = ({toDosProps}: Props) => {
     if(!toDosProps) {
         useEffect(() => {
                 if (!keyTodo) {
-                    handleAllToDo()
+                    handleAllToDo().finally(() => setLoading(false))
                 } else {
-                    searchToDo(keyTodo).then((data) => setToDosShow(data));
+                    searchToDo(keyTodo).then((data) => setToDosShow(data))
+                    .finally(() => setLoading(false));
                 }
-                setLoading(false)
             }, [keyTodo]);
     }else if(toDosProps) {
 
