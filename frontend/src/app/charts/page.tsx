@@ -15,7 +15,8 @@ const Home = () => {
     const [costsToDo, setCostsToDos] = useState<costsToDosType>()
     const [costsMonthToDos, setCostsMonthToDos] = useState<costsToDosMonthType|null>(null)
 
-    useEffect(() => {
+    useEffect(
+        () => {
         
         getDeadLines()
         .then((res) => {setDeadline(res)})

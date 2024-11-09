@@ -4,14 +4,20 @@ import { useEffect, useState } from "react";
 import { getNearDeadLine} from "@/actions/toDo";
 import ListToDos from "../toDos/_components/ListToDo";
 import { toDoType } from "@/types/toDo";
+import Loading from "@/components/Loading";
 
 export default function Home() {
 
     const [toDos, setToDos] = useState<toDoType[]>()
+    const [loading, setLoading] = useState<boolean>(true)
 
     useEffect(() => {
-        getNearDeadLine().then((data) => setToDos(data))
+        getNearDeadLine().then((data) => setToDos(data)).finally(() => setLoading(false))
     }, [])
+    
+    if(loading) {
+        <Loading/>
+    }
 
     if(toDos?.length) {
         return (
@@ -22,4 +28,5 @@ export default function Home() {
           </div>
         )
     }
+
 }
