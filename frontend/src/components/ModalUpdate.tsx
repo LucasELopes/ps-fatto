@@ -20,7 +20,6 @@ const ModalUpdate = ({ modalTitle, handleSubmit, toDoInformation, readonly }: Pr
     const [toDoStream, setToDoStream] = useState<toDoType>({
         id: toDoInformation?.id || "",
         name: toDoInformation?.name || "",
-        description: toDoInformation?.description || "",
         cost: toDoInformation?.cost || 0,
         order: toDoInformation?.order ? new Date(toDoInformation.order) : new Date(currentDate),
         due_date: toDoInformation?.due_date ? new Date(toDoInformation.due_date) : new Date(currentDate),
@@ -32,7 +31,6 @@ const ModalUpdate = ({ modalTitle, handleSubmit, toDoInformation, readonly }: Pr
             setToDoStream({
                 id: toDoInformation.id,
                 name: toDoInformation.name,
-                description: toDoInformation.description,
                 cost: toDoInformation.cost,
                 order: toDoInformation.order,
                 due_date: toDoInformation.due_date,
@@ -101,7 +99,7 @@ const ModalUpdate = ({ modalTitle, handleSubmit, toDoInformation, readonly }: Pr
                             required
                         />
                     </label>
-                    <label htmlFor="description" className="flex flex-col text-gray-400 font-bold">
+                    {/* <label htmlFor="description" className="flex flex-col text-gray-400 font-bold">
                         Descrição da tarefa
                         <textarea 
                             id="description" 
@@ -113,7 +111,7 @@ const ModalUpdate = ({ modalTitle, handleSubmit, toDoInformation, readonly }: Pr
                             onChange={handleInputChange}
                             maxLength={255}
                         />
-                    </label>
+                    </label> */}
                     <label htmlFor="cost" className="flex flex-col text-gray-400 font-bold">
                         <div>
                             Custo da tarefa<span className="text-red-300">*</span> 

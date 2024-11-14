@@ -23,7 +23,7 @@ class StoreToDoRequest extends FormRequest
     {
         return [
             'name' => 'required|string|min:2|max:50|unique:to_dos,name',
-            'description' => 'nullable|string|max:255',
+            // 'description' => 'nullable|string|max:255',
             'cost' => 'required|numeric|min:0',
             'due_date' => 'required|date|date_format:Y-m-d|after_or_equal:today',
         ];

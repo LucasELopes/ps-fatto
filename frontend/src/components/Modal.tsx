@@ -57,7 +57,7 @@ const Modal = ({ modalTitle, handleSubmit, toDoInformation, readonly }: Props) =
                             required
                         />
                     </label>
-                    <label htmlFor="description" className="flex flex-col text-gray-400 font-bold">
+                    {/* <label htmlFor="description" className="flex flex-col text-gray-400 font-bold">
                         Descrição da tarefa
                         <textarea 
                             id="description" 
@@ -67,7 +67,7 @@ const Modal = ({ modalTitle, handleSubmit, toDoInformation, readonly }: Props) =
                             className="border border-indigo-200 rounded-lg px-2 text-center font-normal min-h-[100px] max-h-[200px]"
                             maxLength={255}
                         />
-                    </label>
+                    </label> */}
                     <label htmlFor="cost" className="flex flex-col text-gray-400 font-bold">
                         <div>
                             Custo da tarefa<span className="text-red-300">*</span> 
