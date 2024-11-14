@@ -26,25 +26,25 @@ const ModalUpdate = ({ modalTitle, handleSubmit, toDoInformation, readonly }: Pr
     });
     
 
-    useEffect(() => {
-        if (toDoInformation) {
-            setToDoStream({
-                id: toDoInformation.id,
-                name: toDoInformation.name,
-                cost: toDoInformation.cost,
-                order: toDoInformation.order,
-                due_date: toDoInformation.due_date,
-            })
-        }
-    }, [toDoInformation])
+    // useEffect(() => {
+    //     if (toDoInformation) {
+    //         setToDoStream({
+    //             id: toDoInformation.id,
+    //             name: toDoInformation.name,
+    //             cost: toDoInformation.cost,
+    //             order: toDoInformation.order,
+    //             due_date: toDoInformation.due_date,
+    //         })
+    //     }
+    // }, [toDoInformation])
 
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        const { name, value } = e.target
-        setToDoStream(prev => ({
-            ...prev,
-            [name]: value
-        }))
-    }
+    // const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    //     const { name, value } = e.target
+    //     setToDoStream(prev => ({
+    //         ...prev,
+    //         [name]: value
+    //     }))
+    // }
 
     return (
         <div className="bg-gray-400 bg-opacity-55 w-screen h-screen fixed top-0 left-0 flex justify-center items-center z-50">
@@ -69,7 +69,7 @@ const ModalUpdate = ({ modalTitle, handleSubmit, toDoInformation, readonly }: Pr
                 <div>
                     <h2 className="font-bold text-indigo-400 text-3xl">{modalTitle}</h2>
                 </div>
-                <form method="put" onSubmit={async (e) => {handleSubmit(e, toDoStream?.id || ''); setToDoInformation(null)}} className="w-11/12 h-5/6 m-auto my-1 flex flex-col justify-around gap-5">
+                <form method="post" onSubmit={async (e) => {handleSubmit(e, toDoStream?.id || ''); setToDoInformation(null)}} className="w-11/12 h-5/6 m-auto my-1 flex flex-col justify-around gap-5">
                     <label htmlFor="name" className="flex flex-col text-gray-400 font-bold">
                         {modalTitle === 'Visualizar Tarefa' &&
                             <div>
@@ -95,23 +95,10 @@ const ModalUpdate = ({ modalTitle, handleSubmit, toDoInformation, readonly }: Pr
                             placeholder="Insira o nome da tarefa"
                             className="border border-indigo-200 rounded-lg px-2 text-center font-normal"
                             value={toDoStream.name}
-                            onChange={handleInputChange}
+                            onChange={(e) => setToDoStream({...toDoStream, name: e.target.value})}
                             required
                         />
                     </label>
-                    {/* <label htmlFor="description" className="flex flex-col text-gray-400 font-bold">
-                        Descrição da tarefa
-                        <textarea 
-                            id="description" 
-                            name="description" 
-                            readOnly={readonly}
-                            placeholder="Insira a descrição da tarefa"
-                            className="border border-indigo-200 rounded-lg px-2 text-center font-normal min-h-[100px] max-h-[200px]"
-                            value={toDoStream.description}
-                            onChange={handleInputChange}
-                            maxLength={255}
-                        />
-                    </label> */}
                     <label htmlFor="cost" className="flex flex-col text-gray-400 font-bold">
                         <div>
                             Custo da tarefa<span className="text-red-300">*</span> 
@@ -122,7 +109,7 @@ const ModalUpdate = ({ modalTitle, handleSubmit, toDoInformation, readonly }: Pr
                             name="cost"
                             readOnly={readonly}
                             value={toDoStream.cost}
-                            onChange={handleInputChange}
+                            onChange={(e) => setToDoStream({...toDoStream , cost: Number(e.target.value)})}
                             placeholder="Insira o custo da tarefa"
                             className="border border-indigo-200 rounded-lg px-2 text-center font-normal"
                             required
@@ -142,7 +129,7 @@ const ModalUpdate = ({ modalTitle, handleSubmit, toDoInformation, readonly }: Pr
                                     .getTime() + 86400000 
                                     : new Date().getTime() + 86400000)
                                 }
-                            onChange={handleInputChange}
+                            onChange={(e) => setToDoStream({...toDoStream, due_date: new Date(e.target.value)})}
                             placeholder="Insira o nome da tarefa"
                             className="border border-indigo-200 rounded-lg px-2 text-center font-normal"
                             required

@@ -60,6 +60,7 @@ export async function storeToDo(form: FormData) {
 
 export async function updateToDo(form: FormData, id: string | number) {
     try {
+        form.append('_method', 'PUT')
         const resp = await api.post(`/toDos/${id}`, form);
         return resp.data;
     } catch (error) {

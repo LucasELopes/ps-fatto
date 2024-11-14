@@ -47,7 +47,6 @@ const Skeleton = ({children}: Props) => {
         e.preventDefault()
         const formData = new FormData(e.currentTarget)
         try {
-            formData.append('_method', 'PUT')
             updateToDo(formData, id).finally(() => window.location.reload())
             setIsOpen(false)
         } catch (error) {
