@@ -23,9 +23,8 @@ class UpdateToDoRequest extends FormRequest
     {
         return [
             'name' => 'sometimes|string|min:2|max:50|unique:to_dos,name',
-            // 'description' => 'sometimes|string|max:255',
             'cost' => 'sometimes|numeric|min:0',
-            'due_date' => 'sometimes|date|date_format:Y-m-d|after_or_equal:today',
+            'due_date' => 'sometimes|date|date_format:Y-m-d',
         ];
     }
 }

@@ -145,7 +145,6 @@ const ModalUpdate = ({ modalTitle, handleSubmit, toDoInformation, readonly }: Pr
                             onChange={handleInputChange}
                             placeholder="Insira o nome da tarefa"
                             className="border border-indigo-200 rounded-lg px-2 text-center font-normal"
-                            min={currentDate}
                             required
                         />
                     </label>
