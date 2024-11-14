@@ -15,7 +15,7 @@ return new class extends Migration
 
             $table->uuid('id')->primary();
             $table->string('name', 50)->unique();
-            $table->string('description')->nullable();
+            // $table->string('description')->nullable();
             $table->double('cost');
             $table->date('due_date');
             $table->dateTime('order');
