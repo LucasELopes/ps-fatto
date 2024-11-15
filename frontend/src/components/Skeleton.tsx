@@ -47,6 +47,11 @@ const Skeleton = ({children}: Props) => {
         e.preventDefault()
         const formData = new FormData(e.currentTarget)
         try {
+            
+            if(formData.get('name') === toDoInformation?.name) {
+                formData.delete('name')
+            }
+
             updateToDo(formData, id).finally(() => window.location.reload())
             setIsOpen(false)
         } catch (error) {
