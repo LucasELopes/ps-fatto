@@ -2,7 +2,6 @@
 
 import { searchToDo } from "@/actions/toDo";
 import { useSearchToDoContext } from "@/app/contexts/SearchToDoContext";
-import ListToDos from "@/app/toDos/_components/ListToDo";
 import { toDoType } from "@/types/toDo";
 import Image from "next/image";
 import Link from "next/link";

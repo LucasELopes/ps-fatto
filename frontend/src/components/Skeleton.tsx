@@ -5,7 +5,6 @@ import Header from "./Header";
 import SideBar from "./SideBar";
 import Charts from "./ChartPie";
 import { toDoType } from "@/types/toDo";
-import ListToDos from "@/app/toDos/_components/ListToDo";
 import { searchToDo, storeToDo, updateToDo } from "@/actions/toDo";
 import Modal from "./Modal";
 import { HandleModalContext } from "@/app/contexts/HandleModalContext";
