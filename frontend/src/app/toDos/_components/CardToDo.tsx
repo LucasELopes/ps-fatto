@@ -76,7 +76,7 @@ const CardToDo = ({toDo, index}: props) => {
                     <div className="col-span-12  md:col-span-3 flex items-center justify-end md:justify-center gap-x-3">
                         <div>
                             <Image
-                                className="cursor-pointer hover:scale-150 duration-200 z-50"
+                                className="cursor-pointer hover:scale-[1.2] duration-200 z-50"
                                 src={'/eye.png'}
                                 alt="view"
                                 width={20}
@@ -86,7 +86,7 @@ const CardToDo = ({toDo, index}: props) => {
                         </div>
                         <div>
                             <Image
-                                className="cursor-pointer hover:scale-150 duration-200 z-50"
+                                className="cursor-pointer hover:scale-[1.2] duration-200 z-50"
                                 src={'/editing.png'}
                                 alt="editing"
                                 width={20}
@@ -96,7 +96,7 @@ const CardToDo = ({toDo, index}: props) => {
                         </div>
                         <div>
                             <Image
-                                className="cursor-pointer hover:scale-150 duration-200 z-50"
+                                className="cursor-pointer hover:scale-[1.2] duration-200 z-50"
                                 src={'/delete.png'}
                                 alt="delete"
                                 width={20}
