@@ -19,7 +19,7 @@ const SideBar = ({iconSite}: Props) => {
                 bottom-0 h-[8%] h-max-[70px] w-screen flex justify-around items-center
                 md:h-screen md:w-24 md:flex-col md:py-[5%]
             ">
-                <Link href={'/'} className="md:flex md:justify-center md:items-center">
+                <Link href={'/'} onClick={() => setKeyToDo('')} className="md:flex md:justify-center md:items-center">
                     <Image
                         className="
                             transition-all duration-500 w-28 m-0 fixed bottom-[7%] -left-7 z-30 

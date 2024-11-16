@@ -11,7 +11,7 @@ import { useState } from "react";
 const Header = () => {
     
     const [valueInput, setValueInput] = useState<string|number>('')
-    const {keyTodo, setKeyToDo} = useSearchToDoContext()
+    const {setKeyToDo} = useSearchToDoContext()
 
     return (
         <div
@@ -24,6 +24,7 @@ const Header = () => {
         >
             <div className="col-span-6">
                 <Link
+                    onClick={() => setKeyToDo('')}
                     href="/"
                     className="
                         block
@@ -43,14 +44,17 @@ const Header = () => {
                     md:max-w-xs hover:border-primaryColor focus:border-primaryColor 
                 ">
                     <input
-                    type="text"
-                    className="
-                        bg-gray-100
-                        outline-none border-none
-                        text-center 
-                        w-full
-                    "
-                    placeholder="Pesquise o id ou nome da tarefa"
+                        type="text"
+                        className="
+                            bg-gray-100
+                            outline-none border-none
+                            text-center 
+                            w-full
+                        "
+                        value={valueInput}
+                        onChange={(e) => setValueInput(e.target.value)}
+                        onKeyDown={(e) => e.key === 'Enter' && setKeyToDo(valueInput) && setValueInput('')}
+                        placeholder="Pesquise o id ou nome da tarefa"
                     />
                     <Image
                         src={'/searchIcon.svg'}
