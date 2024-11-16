@@ -29,7 +29,6 @@ const CardToDo = ({toDo, index}: props) => {
                 ref={provided.innerRef}
                 key={toDo.id} 
                 className="w-full h-full grid md:grid-cols-12 gap-3 p-2 cursor-default my-4"
-                
             >
                 <div className="col-span-3">
                 </div>
@@ -38,7 +37,7 @@ const CardToDo = ({toDo, index}: props) => {
                 <div className={`
                     ${toDo.cost < 1000 ? 'bg-indigo-100' : 'bg-indigo-200'} 
                     col-span-5 max-w-[1280px] m-auto md:rounded-xl p-2 grid grid-cols-12 outline-2 hover:outline-indigo-400 hover:outline
-                    shadow-md hover:scale-110 transition-all duration-300 py-4 relative w-full
+                    shadow-lg hover:scale-110 transition-all duration-300 py-4 relative w-full
                     `}>
                     <div className={`
                         ${toDo.cost < 1000 ? 'bg-indigo-100' : 'bg-indigo-200'} 
