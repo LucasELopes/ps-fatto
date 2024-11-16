@@ -12,91 +12,79 @@ const SideBar = ({iconSite}: Props) => {
 
     const {isOpen, setIsOpen, setTitleModal} = useHandleModalContext()
     const {keyTodo, setKeyToDo} = useSearchToDoContext()
-    return (
-        <>
-            <div className="bg-primaryColor w-screen h-14 md:h-screen md:w-[6%] flex md:flex-col justify-center items-center fixed bottom-0 z-20">
-                <div className="h-[10.5%] h-max-[112px]">
-                    <Link href={'/'}  onClick={() => setKeyToDo('')}>
-                        <Image
-                            className="md:hover:scale-110 md:hover:-rotate-12 transition-all duration-500 w-28 md:w-full m-0 fixed md:relative bottom-12 -left-7"
-                            src={iconSite}
-                            width={500}
-                            height={70}
-                            alt="Logo"
-                            title="Home"
-                        />
-                    </Link>
-                </div>
-                <div className="h-full w-full md:p-3  md:mx-0 flex justify-around items-center md:flex-col md:justify-center md:gap-y-8">
-                    <div className="md:h-[10%] h-max-[100px]">
-                        <Link href={'/charts'}>
-                            <Image
-                                className="hover:invert hover:scale-110 duration-300 w-4/12 md:w-6/12 max-w-20 m-auto" 
-                                src={'/pie-chart.png'}
-                                width={400}
-                                height={400}
-                                alt="Chart"
-                                title="Gráficos"
-                            />
-                        </Link>
-                    </div>
-                    <div className="md:h-[10%] h-max-[100px]">
-                        <Link
-                            href={'/onTime'}
-                        >
-                            <Image 
-                                className="hover:invert hover:scale-125 duration-500 w-4/12 md:w-6/12 max-w-20 m-auto hover:-rotate-[360deg]" 
-                                src={'/activity.png'} 
-                                width={400} 
-                                height={400}
-                                alt="Done tasks" 
-                                title="Tarefas no prazo"
-                            />
-                        </Link>
-                    </div>       
-                    <div className="md:h-[10%] h-max-[100px]">
-                        <Image 
-                            className="hover:invert hover:scale-110 duration-300 w-full md:w-6/12 max-w-20 m-auto cursor-pointer" 
-                            src={'/icons8-add-50.png'} 
-                            width={400} 
-                            height={400}
-                            alt="ADD" 
-                            onClick={() => {setIsOpen(!isOpen); setTitleModal('Criar Tarefa')}}
-                            title="Adicionar tarefa"
-                        />
-                    </div>
-                    <div className="md:h-[10%] max-h-[100px]">
-                        <Link
-                            href={'/nearDeadLine'}
-                        >
-                            <Image 
-                                className="hover:invert hover:scale-125 duration-300 w-4/12 md:w-6/12 max-w-20 h-auto m-auto hover:-rotate-[360deg]" 
-                                src={'/alert.png'} 
-                                alt="deadlines tasks"
-                                width={400}
-                                height={400}
-                                title="Tarefas perto do prazo"
-                            />
-                        </Link>
-                    </div>
 
-                    <div className="md;h-[10%] h-max-[100px]">
-                        <Link
-                            href={'/overdue'}
-                        >
-                            <Image 
-                                className="hover:invert hover:scale-125 duration-500 w-4/12 md:w-6/12 max-w-20 m-auto hover:-rotate-[360deg]" 
-                                src={'/pending.png'} 
-                                width={400} 
-                                height={400}
-                                alt="Pending" 
-                                title="Tarefas atrasadas"
-                            />
-                        </Link>
-                    </div> 
-                </div>
-            </div> 
-        </>
+    return (
+        <div className="relative">
+            <div className="bg-primaryColor fixed z-20 
+                bottom-0 h-[8%] h-max-[70px] w-screen flex justify-around items-center
+                md:h-screen md:w-24 md:flex-col md:py-[5%]
+            ">
+                <Link href={'/'} className="md:flex md:justify-center md:items-center">
+                    <Image
+                        className="
+                            transition-all duration-500 w-28 m-0 fixed bottom-[7%] -left-7 z-30 
+                            md:hover:scale-110 md:hover:-rotate-12 md:absolute md:top-0 md:left-0
+                        "
+                        src={iconSite}
+                        width={250}
+                        height={250}
+                        alt="Logo"
+                        title="Home"
+                        
+                    />
+                </Link>
+                <Link href={'/charts'}>
+                    <Image
+                        className="hover:invert hover:scale-110 duration-300 w-8/12 max-w-20 m-auto md:w-9/12" 
+                        src={'/pie-chart.png'}
+                        width={40}
+                        height={40}
+                        alt="Chart"
+                        title="Gráficos"
+                    />
+                </Link>
+                <Link href={'/charts'}>
+                    <Image
+                        className="hover:invert hover:scale-110 duration-300 w-8/12 max-w-20 m-auto md:w-9/12 hover:-rotate-[360deg]" 
+                        src={'/activity.png'}
+                        width={40}
+                        height={40}
+                        alt="Chart"
+                        title="Tarefas dentro do prazo"
+                    />
+                </Link>
+                <Link href={'/charts'}>
+                    <Image
+                        className="hover:invert hover:scale-110 duration-300 w-9/12 max-w-20 m-auto md:w-10/12" 
+                        src={'/add.png'}
+                        width={40}
+                        height={40}
+                        alt="Chart"
+                        title="Adicionar tarefa"
+                    />
+                </Link>
+                <Link href={'/charts'}>
+                    <Image
+                        className="hover:invert hover:scale-110 duration-300 w-8/12 max-w-20 m-auto md:w-9/12 hover:-rotate-[360deg]" 
+                        src={'/alert.png'}
+                        width={40}
+                        height={40}
+                        alt="Chart"
+                        title="Tarefas perto do prazo"
+                    />
+                </Link>
+                <Link href={'/charts'}>
+                    <Image
+                        className="hover:invert hover:scale-110 duration-300 w-9/12 max-w-20 m-auto md:w-10/12 hover:-rotate-[360deg]" 
+                        src={'/pending.png'}
+                        width={40}
+                        height={40}
+                        alt="Chart"
+                        title="Tarefas atrasadas"
+                    />
+                </Link>
+            </div>
+        </div>
     )
 }
 

@@ -15,7 +15,6 @@ import {ToastContainer, ToastOptions, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { setTimeout } from "timers/promises";
 
-
 type Props = {
     children?: ReactNode;
 }
