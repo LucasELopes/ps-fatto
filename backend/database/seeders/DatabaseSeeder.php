@@ -13,7 +13,9 @@ class DatabaseSeeder extends Seeder
      * Seed the application's database.
      */
     public function run(): void
-    {
-        ToDo::factory(100)->create();
+    {   
+        $this->call([
+            ToDoSeeder::class
+        ]);
     }
 }

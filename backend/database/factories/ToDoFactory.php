@@ -23,7 +23,7 @@ class ToDoFactory extends Factory
             // 'description' => fake()->text(),
             'cost' => fake()->numberBetween(1, 1200),
             'due_date' => date('Y-m-d', strtotime("01/01/2024 +$addWeek week")),
-            'order' => date('Y-m-d H:i:s', strtotime('now'))
+            'order' => time()
         ];
     }
 }

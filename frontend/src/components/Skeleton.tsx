@@ -11,6 +11,10 @@ import { HandleModalContext } from "@/app/contexts/HandleModalContext";
 import { SearchToDoContext } from "@/app/contexts/SearchToDoContext";
 import ModalDelete from "./ModalDelete";
 import ModalUpdate from "./ModalUpdate";
+import {ToastContainer, ToastOptions, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { setTimeout } from "timers/promises";
+
 
 type Props = {
     children?: ReactNode;
@@ -21,7 +25,6 @@ const Skeleton = ({children}: Props) => {
     const [titleModal, setTitleModal] = useState<string>('')
     const [isOpen, setIsOpen] = useState<boolean>(false)
 
-
     const [keyToDoDelete, setKeyToDoDelete] = useState<string|number|null>(null)
     const [isOpenDelete, setIsOpenDelete] = useState<boolean>(false)
 
@@ -30,16 +33,21 @@ const Skeleton = ({children}: Props) => {
     const [keyTodo, setKeyToDo] = useState<string|number|null>(null)
     const [toDoInformation, setToDoInformation] = useState<toDoType|null>(null)
 
+    const optionsToast: ToastOptions = {
+        position: 'bottom-right',
+    }
+
     const handleSubmitToDo = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         const formData = new FormData(e.currentTarget);
         try {
-            await storeToDo(formData)
+            await storeToDo(formData).then((data) => console.log(data))
             setIsOpen(false)
+            window.location.reload()
         } catch (error) {
-            console.log('Erro ao enviar tarefa: ', error)
+            toast.error('Não foi possível criar a tarefa!', optionsToast)
+            setIsOpen(false)
         }
-        window.location.reload()
     }
 
     const handleSubmitUpdateToDo = async(e: React.FormEvent<HTMLFormElement>, id: number|string) => {
@@ -50,7 +58,6 @@ const Skeleton = ({children}: Props) => {
             if(formData.get('name') === toDoInformation?.name) {
                 formData.delete('name')
             }
-
             updateToDo(formData, id).finally(() => window.location.reload())
             setIsOpen(false)
         } catch (error) {
@@ -75,24 +82,24 @@ const Skeleton = ({children}: Props) => {
                                 <div>
                                     {isOpen && toDoInformation &&
                                         <ModalUpdate 
-                                            modalTitle={titleModal} 
-                                            handleSubmit={handleSubmitUpdateToDo} 
-                                            toDoInformation={toDoInformation} 
-                                            readonly={readOnly}
+                                        modalTitle={titleModal} 
+                                        handleSubmit={handleSubmitUpdateToDo} 
+                                        toDoInformation={toDoInformation} 
+                                        readonly={readOnly}
                                         /> 
                                     }
-
                                     {isOpen && !toDoInformation && 
                                         <Modal 
-                                            modalTitle={titleModal} 
-                                            handleSubmit={handleSubmitToDo} 
-                                            readonly={readOnly}
+                                        modalTitle={titleModal} 
+                                        handleSubmit={handleSubmitToDo} 
+                                        readonly={readOnly}
                                         /> 
                                     }
                                     {isOpenDelete &&
                                         <ModalDelete id={keyToDoDelete}/>
                                     }
                                     {children}
+                                    <ToastContainer autoClose={3500}/>
                                 </div>
                         </div>      
                 </div>

@@ -97,6 +97,7 @@ const ModalUpdate = ({ modalTitle, handleSubmit, toDoInformation, readonly }: Pr
                             value={toDoStream.name}
                             onChange={(e) => setToDoStream({...toDoStream, name: e.target.value})}
                             required
+                            autoFocus
                         />
                     </label>
                     <label htmlFor="cost" className="flex flex-col text-gray-400 font-bold">

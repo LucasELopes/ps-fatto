@@ -53,8 +53,9 @@ const Modal = ({ modalTitle, handleSubmit, toDoInformation, readonly }: Props) =
                             name="name" 
                             readOnly={readonly}
                             placeholder="Insira o nome da tarefa"
-                            className="border border-indigo-200 rounded-lg px-2 text-center font-normal"
+                            className="border border-indigo-200 rounded-lg px-2 text-center font-normal "
                             required
+                            autoFocus
                         />
                     </label>
                     {/* <label htmlFor="description" className="flex flex-col text-gray-400 font-bold">

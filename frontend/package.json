@@ -16,9 +16,11 @@
     "next": "15.0.2",
     "react": "19.0.0-rc-02c0e824-20241028",
     "react-apexcharts": "^1.5.0",
+    "react-beautiful-dnd": "^13.1.1",
     "react-dom": "19.0.0-rc-02c0e824-20241028",
     "react-hook-form": "^7.53.1",
     "react-modal": "^3.16.1",
+    "react-toastify": "^10.0.6",
     "zod": "^3.23.8"
   },
   "devDependencies": {

@@ -27,7 +27,7 @@ class ToDoController extends Controller
      */
     public function index()
     {
-        $toDos = $this->toDo->orderBy('order', 'desc')->get();
+        $toDos = $this->toDo->orderBy('order')->get();
 
         return response()->json(ToDoResource::collection($toDos), Response::HTTP_OK);
     }
@@ -131,7 +131,7 @@ class ToDoController extends Controller
     public function store(StoreToDoRequest $request): JsonResponse
     {
         $data = $request->validated();
-        $data['order'] = date('Y-m-d H:i:s', strtotime('now'));
+        $data['order'] = time();
         $toDo = $this->toDo->create($data);
 
         return response()->json(ToDoResource::make($toDo), Response::HTTP_CREATED);

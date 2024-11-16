@@ -4,7 +4,6 @@ import axios, { AxiosResponse } from "axios"
 import { deadLineType } from "@/types/deadLine"
 import { toDoType } from "@/types/toDo"
 import { api } from "@/utils/api"
-import { costsToDosType } from "@/types/costsTodos"
 import { costsToDosMonthType } from "@/types/costsTodosMonth"
 
 export async function allToDo(): Promise<toDoType[]> {
@@ -33,14 +32,13 @@ export async function getOverDue(): Promise<toDoType[]> {
     return res.data
 }
 
-
-export async function  getCostsToDos(): Promise<costsToDosType> {
-    const res = await api.get('/costsToDos')
+export async function  getCostsMonthToDos(): Promise<costsToDosMonthType> {
+    const res = await api.get('/costsToDosMonth')
     return res.data
 }
 
-export async function  getCostsMonthToDos(): Promise<costsToDosMonthType> {
-    const res = await api.get('/costsToDosMonth')
+export async function  getCostsToDos(): Promise<deadLineType> {
+    const res = await api.get('/costsToDos')
     return res.data
 }
 
