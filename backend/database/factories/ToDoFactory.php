@@ -16,14 +16,13 @@ class ToDoFactory extends Factory
      */
     public function definition(): array
     {
-        $addWeek = fake()->numberBetween(0, 160); 
+        $addWeek = fake()->numberBetween(0, 52); 
 
         return [
-            'name' => 'Teste'.fake()->numberBetween(0, 10),
-            // 'description' => fake()->text(),
+            'name' => fake()->unique()->text(20),
             'cost' => fake()->numberBetween(1, 1200),
             'due_date' => date('Y-m-d', strtotime("01/01/2024 +$addWeek week")),
-            'order' => fake()->unique()->numberBetween(0, 10)
+            'order' => fake()->unique()->numberBetween(0, 1000)
         ];
     }
 }

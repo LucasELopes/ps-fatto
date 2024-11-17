@@ -21,6 +21,8 @@ export default function Home() {
   const {keyTodo, setKeyToDo} = useSearchToDoContext()
 
   useEffect(() => {
+    setLoading(true)
+
     if(!keyTodo) {
       allToDo().then((data) => setToDos(data)).finally(() => setLoading(false))
     }
