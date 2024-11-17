@@ -19,11 +19,11 @@ class ToDoFactory extends Factory
         $addWeek = fake()->numberBetween(0, 160); 
 
         return [
-            'name' => fake()->text(50),
+            'name' => 'Teste'.fake()->numberBetween(0, 10),
             // 'description' => fake()->text(),
             'cost' => fake()->numberBetween(1, 1200),
             'due_date' => date('Y-m-d', strtotime("01/01/2024 +$addWeek week")),
-            'order' => time()
+            'order' => fake()->unique()->numberBetween(0, 10)
         ];
     }
 }

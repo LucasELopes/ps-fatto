@@ -1,4 +1,4 @@
-import { allToDo, searchToDo } from "@/actions/toDo";
+import { allToDo, searchToDo, updateToDo } from "@/actions/toDo";
 import { toDoType } from "@/types/toDo";
 import { useEffect, useState } from "react";
 import CardToDo from "./CardToDo";
@@ -6,6 +6,8 @@ import { useSearchToDoContext } from "@/app/contexts/SearchToDoContext";
 import Link from "next/link";
 import Loading from "@/components/Loading";
 import {DragDropContext, Droppable} from '@hello-pangea/dnd'
+import { todo } from "node:test";
+import { api } from "@/utils/api";
 
 type Props = {
     toDosProps: toDoType[]
@@ -13,15 +15,59 @@ type Props = {
 
 const ListToDos = ({toDosProps}: Props) => {
     
+    const [toDosModify, setToDosModify] = useState<toDoType[]>([])
     const [toDos, setToDos] = useState<toDoType[]>(toDosProps)
 
-    function reorder<T>(list:T[], startIndex: number, endIndex: number) {
+    useEffect(() => {
+        if (toDosModify && toDosModify.length > 0) {
+            toDosModify.map((toDo) => {
+                const formData = new FormData();
+                formData.append('order', String(toDo.order));
+                updateToDo(formData, toDo.id);
+            });
+            setToDosModify([])
+        }
+    }, [toDosModify])
+
+    function reorder(list:toDoType[], startIndex: number, endIndex: number) {
+
         const result = Array.from(list)
-        const [remove] = result.splice(startIndex, 1)
-        result.splice(endIndex, 0, remove)
+        const [removed] = result.splice(startIndex, 1)
         
+        let orderRemoved = removed.order
+
+        let toDosModifyArray:toDoType[] = [];
+        
+        if(startIndex <= endIndex) {
+            for(let i = startIndex+1; i <= endIndex; i++) {
+                
+                list[i].order -= 1
+                toDosModifyArray.push(list[i])
+                
+                if(i == endIndex) {
+                    removed.order = endIndex+1
+                    toDosModifyArray.push(removed)
+                }
+            }
+        }
+        else {            
+            for(let i = endIndex; i < startIndex; i++) {
+                list[i].order += 1
+                toDosModifyArray.push(list[i])
+
+                if(i+1 == startIndex) {
+                    removed.order = endIndex+1
+                    toDosModifyArray.push(removed)
+                }
+
+            }
+        }
+
+        setToDosModify(toDosModifyArray)
+        result.splice(endIndex, 0, removed)
+
         return result;
-    }
+    }    
 
     const onDragEnd = (result: any) => {
         if(!result.destination) {
@@ -29,7 +75,7 @@ const ListToDos = ({toDosProps}: Props) => {
         }
 
         const items = reorder(toDos, result.source.index, result.destination.index)
-        setToDos(items) // TODO Adaptar essa parte
+        setToDos(items)
     }
 
     return (

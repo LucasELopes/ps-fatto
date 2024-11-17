@@ -100,7 +100,7 @@ class ToDoController extends Controller
         $toDo = $this->toDo->where('due_date', 
             '>=', 
             date('Y-m-d', strtotime('+1 week', strtotime('now')))
-        )->get();
+        )->orderBy('order')->get();
 
         return response()->json(ToDoResource::collection($toDo), Response::HTTP_OK);
     }    
@@ -109,7 +109,7 @@ class ToDoController extends Controller
 
         $toDo = $this->toDo->where('due_date', '>=', date('Y-m-d'))
                     ->where('due_date', '<=', date('Y-m-d', strtotime('+1 week')))
-                    ->get();
+                    ->orderBy('order')->get();
 
 
         return response()->json(ToDoResource::collection( $toDo ), Response::HTTP_OK);
@@ -120,7 +120,7 @@ class ToDoController extends Controller
         $toDo = $this->toDo->where('due_date', 
             '<', 
             date('Y-m-d', strtotime('now'))
-        )->get();
+        )->orderBy('order')->get();
 
         return response()->json(ToDoResource::collection($toDo), Response::HTTP_OK);
     }

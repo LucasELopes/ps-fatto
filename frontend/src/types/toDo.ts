@@ -4,5 +4,5 @@ export type toDoType = {
     // description: string,
     cost: number,
     due_date: Date,
-    order: Date,
+    order: number,
 } 

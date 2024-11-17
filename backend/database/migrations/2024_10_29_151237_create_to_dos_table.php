@@ -18,7 +18,7 @@ return new class extends Migration
             // $table->string('description')->nullable();
             $table->decimal('cost');
             $table->date('due_date');
-            $table->double('order');
+            $table->bigInteger('order', false);
 
             $table->timestamps();
         });

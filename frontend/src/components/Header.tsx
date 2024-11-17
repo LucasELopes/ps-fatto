@@ -24,7 +24,7 @@ const Header = () => {
         >
             <div className="col-span-6">
                 <Link
-                    onClick={() => setKeyToDo('')}
+                    onClick={() => {setKeyToDo(''); setValueInput('')}}
                     href="/"
                     className="
                         block

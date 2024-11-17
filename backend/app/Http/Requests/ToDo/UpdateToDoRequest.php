@@ -25,6 +25,7 @@ class UpdateToDoRequest extends FormRequest
             'name' => 'sometimes|string|min:2|max:50|unique:to_dos,name',
             'cost' => 'sometimes|numeric|min:0',
             'due_date' => 'sometimes|date|date_format:Y-m-d',
+            'order' => 'sometimes|numeric'
         ];
     }
 }
