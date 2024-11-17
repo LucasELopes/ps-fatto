@@ -5,6 +5,7 @@ import { deadLineType } from "@/types/deadLine"
 import { toDoType } from "@/types/toDo"
 import { api } from "@/utils/api"
 import { costsToDosMonthType } from "@/types/costsTodosMonth"
+import { costsToDosType } from "@/types/costsTodos"
 
 export async function allToDo(): Promise<toDoType[]> {
     const res = await api.get('/toDos')
@@ -18,7 +19,6 @@ export async function getDeadLines(): Promise<deadLineType> {
 
 export async function getOnTime(): Promise<toDoType[]> {
     const res = await api.get('/getOnTime')
-    console.log(res.data)
     return res.data
 }
 
@@ -37,7 +37,7 @@ export async function  getCostsMonthToDos(): Promise<costsToDosMonthType> {
     return res.data
 }
 
-export async function  getCostsToDos(): Promise<deadLineType> {
+export async function  getCostsToDos(): Promise<costsToDosType> {
     const res = await api.get('/costsToDos')
     return res.data
 }

@@ -19,13 +19,14 @@ const Home = () => {
         () => {
         
         getDeadLines()
-        .then((res) => {setDeadline(res)})
-
+        .then((res) => setDeadline(res))
+        
+        
         getCostsToDos()
-        .then((res) => {setCostsToDos(res)}) 
+        .then((res) => setCostsToDos(res)) 
 
         getCostsMonthToDos()
-        .then((data) => {setCostsMonthToDos(data)})
+        .then((data) => setCostsMonthToDos(data))
 
     },[])
 

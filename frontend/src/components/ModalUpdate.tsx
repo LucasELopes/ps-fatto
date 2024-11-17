@@ -21,7 +21,7 @@ const ModalUpdate = ({ modalTitle, handleSubmit, toDoInformation, readonly }: Pr
         id: toDoInformation?.id || "",
         name: toDoInformation?.name || "",
         cost: toDoInformation?.cost || 0,
-        order: toDoInformation?.order ? new Date(toDoInformation.order) : new Date(currentDate),
+        order: toDoInformation?.order || 1,
         due_date: toDoInformation?.due_date ? new Date(toDoInformation.due_date) : new Date(currentDate),
     });
     
