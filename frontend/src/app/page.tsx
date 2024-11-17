@@ -24,22 +24,42 @@ export default function Home() {
     if(!keyTodo) {
       allToDo().then((data) => setToDos(data)).finally(() => setLoading(false))
     }
-    else {
+    else if(keyTodo) {
       searchToDo(keyTodo).then((data) => {data && setToDos(data)}).finally(() => setLoading(false))
     }
   },[keyTodo]) 
 
   if(loading) {
-    <Loading/>
+    return (
+      <Loading/>
+    )
   }
-  else if(toDos) {
+  else if(toDos && toDos?.length > 0) {
       return (
         <div className="grid gap-2  h-full">
           <div className="p-4 ">
             <ListToDos toDosProps={toDos}/>
           </div>
         </div>
-    
       )
   }
+  else if(keyTodo) {
+      return (
+        <div className='flex justify-center items-center w-screen h-[calc(100vh-4rem)] text-center'>
+          <div className='font-medium cursor-pointer' onClick={() => {setKeyToDo('')}}>
+            A tarefa "{keyTodo}" não foi encontrada!   
+          </div>
+        </div>
+      )
+  }
+  else {
+    return (
+      <div className='flex justify-center items-center w-screen h-[calc(100vh-4rem)] text-center'>
+        <div className='font-medium'>
+          Não há tarefas para serem exibidas!  
+        </div>
+      </div>
+    )
+  }
+
 }

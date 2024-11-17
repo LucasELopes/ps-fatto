@@ -143,7 +143,7 @@ class ToDoController extends Controller
     public function show($id)
     {
         $toDo = $this->toDo->where('id', $id)
-            ->orWhere('name', $id)
+            ->orWhere('name','LIKE' ,"{$id}%")
             ->get();
 
         if(!$toDo) {

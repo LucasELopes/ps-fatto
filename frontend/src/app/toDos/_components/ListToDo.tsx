@@ -12,10 +12,24 @@ type Props = {
 }
 
 const ListToDos = ({toDosProps}: Props) => {
+    
+    const [toDos, setToDos] = useState<toDoType[]>(toDosProps)
+
+    function reorder<T>(list:T[], startIndex: number, endIndex: number) {
+        const result = Array.from(list)
+        const [remove] = result.splice(startIndex, 1)
+        result.splice(endIndex, 0, remove)
+        
+        return result;
+    }
+
     const onDragEnd = (result: any) => {
         if(!result.destination) {
             return 
         }
+
+        const items = reorder(toDos, result.source.index, result.destination.index)
+        setToDos(items) // TODO Adaptar essa parte
     }
 
     return (
@@ -26,7 +40,7 @@ const ListToDos = ({toDosProps}: Props) => {
                         ref={provided.innerRef}
                         {...provided.droppableProps}
                     >
-                        {toDosProps.length > 0 && toDosProps.map((toDo, index) => ( 
+                        {toDos.length > 0 && toDos.map((toDo, index) => ( 
                             <CardToDo key={toDo.id} toDo={toDo} index={index}/>
                         ))}
                     {provided.placeholder}

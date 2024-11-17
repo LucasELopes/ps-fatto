@@ -30,7 +30,6 @@ const SideBar = ({iconSite}: Props) => {
                         height={250}
                         alt="Logo"
                         title="Home"
-                        
                     />
                 </Link>
                 <Link href={'/charts'}>
@@ -43,7 +42,7 @@ const SideBar = ({iconSite}: Props) => {
                         title="Gráficos"
                     />
                 </Link>
-                <Link href={'/charts'}>
+                <Link href={'/onTime'}>
                     <Image
                         className="hover:invert hover:scale-110 duration-300 w-8/12 max-w-20 m-auto md:w-9/12 hover:-rotate-[360deg]" 
                         src={'/activity.png'}
@@ -63,7 +62,7 @@ const SideBar = ({iconSite}: Props) => {
                         title="Adicionar tarefa"
                     />
                 </Link>
-                <Link href={'/charts'}>
+                <Link href={'/nearDeadLine'}>
                     <Image
                         className="hover:invert hover:scale-110 duration-300 w-8/12 max-w-20 m-auto md:w-9/12 hover:-rotate-[360deg]" 
                         src={'/alert.png'}
@@ -73,7 +72,7 @@ const SideBar = ({iconSite}: Props) => {
                         title="Tarefas perto do prazo"
                     />
                 </Link>
-                <Link href={'/charts'}>
+                <Link href={'/overdue'}>
                     <Image
                         className="hover:invert hover:scale-110 duration-300 w-9/12 max-w-20 m-auto md:w-10/12 hover:-rotate-[360deg]" 
                         src={'/pending.png'}
