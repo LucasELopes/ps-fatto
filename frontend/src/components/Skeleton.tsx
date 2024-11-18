@@ -57,10 +57,13 @@ const Skeleton = ({children}: Props) => {
             if(formData.get('name') === toDoInformation?.name) {
                 formData.delete('name')
             }
-            updateToDo(formData, id).finally(() => window.location.reload())
-            setIsOpen(false)
+            await updateToDo(formData, id)
+            window.location.reload()
         } catch (error) {
-            console.log('Erro ao atualizar a tarafa: ', error)
+            toast.error('Não foi possível criar a tarefa!', optionsToast)
+        }
+        finally {
+            setIsOpen(false)
         }
     }
 

@@ -57,14 +57,14 @@ export async function storeToDo(form: FormData) {
 }
 
 export async function updateToDo(form: FormData, id: string | number) {
-    try {
+    // try {
         form.append('_method', 'PUT')
         const resp = await api.post(`/toDos/${id}`, form);
         return resp.data;
-    } catch (error) {
-        console.error("Erro na atualização da tarefa:", error);
-        throw error;
-    }
+    // } catch (error) {
+    //     console.error("Erro na atualização da tarefa:", error);
+    //     throw error;
+    // }
 }
 
 
