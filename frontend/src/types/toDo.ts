@@ -2,7 +2,7 @@ export type toDoType = {
     id: string,
     name: string,
     // description: string,
-    cost: number,
+    cost: string,
     due_date: Date,
     order: number,
 } 

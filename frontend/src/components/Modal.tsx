@@ -76,6 +76,7 @@ const Modal = ({ modalTitle, handleSubmit, toDoInformation, readonly }: Props) =
                         <input 
                             id="cost" 
                             type="number" 
+                            step={0.01}
                             name="cost"
                             readOnly={readonly}
                             placeholder="Insira o custo da tarefa"

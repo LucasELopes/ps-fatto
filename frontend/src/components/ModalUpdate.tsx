@@ -20,7 +20,7 @@ const ModalUpdate = ({ modalTitle, handleSubmit, toDoInformation, readonly }: Pr
     const [toDoStream, setToDoStream] = useState<toDoType>({
         id: toDoInformation?.id || "",
         name: toDoInformation?.name || "",
-        cost: toDoInformation?.cost || 0,
+        cost: toDoInformation?.cost || "",
         order: toDoInformation?.order || 1,
         due_date: toDoInformation?.due_date ? new Date(toDoInformation.due_date) : new Date(currentDate),
     });
@@ -107,10 +107,11 @@ const ModalUpdate = ({ modalTitle, handleSubmit, toDoInformation, readonly }: Pr
                         <input 
                             id="cost" 
                             type="number" 
+                            step={0.01}
                             name="cost"
                             readOnly={readonly}
                             value={toDoStream.cost}
-                            onChange={(e) => setToDoStream({...toDoStream , cost: Number(e.target.value)})}
+                            onChange={(e) => setToDoStream({...toDoStream , cost: e.target.value})}
                             placeholder="Insira o custo da tarefa"
                             className="border border-indigo-200 rounded-lg px-2 text-center font-normal"
                             required

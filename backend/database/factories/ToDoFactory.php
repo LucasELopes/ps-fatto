@@ -20,7 +20,7 @@ class ToDoFactory extends Factory
 
         return [
             'name' => fake()->unique()->text(20),
-            'cost' => fake()->numberBetween(1, 1200),
+            'cost' => fake()->randomFloat(2, 1, 2000),
             'due_date' => date('Y-m-d', strtotime("01/01/2024 +$addWeek week")),
             'order' => fake()->unique()->numberBetween(0, 1000)
         ];

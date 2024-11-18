@@ -22,12 +22,12 @@ const Header = () => {
             md:items-center md:justify-center
         "
         >
-            <div className="col-span-6">
+            <div className="col-span-6 flex justify-center">
                 <Link
                     onClick={() => {setKeyToDo(''); setValueInput('')}}
                     href="/"
                     className="
-                        block
+                        inline
                         text-xl md:text-3xl italic text-purple-50
                         col-span-6 text-center hover:scale-110 
                         hover:text-purple-200 duration-300 font-bold
