@@ -129,7 +129,7 @@ class ToDoController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(StoreToDoRequest $request): JsonResponse
-    {
+    {   
         $data = $request->validated();
         $data['order'] = time();
         $toDo = $this->toDo->create($data);

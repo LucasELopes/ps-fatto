@@ -50,11 +50,12 @@ const ListToDos = ({toDosProps}: Props) => {
             }
         }
         else {            
-            for(let i = endIndex; i < startIndex; i++) {
+            for(let i = endIndex; i < startIndex; i++) {               
                 toDosModifyArray.push({...list[i], order: list[i+1].order})
             }
             toDosModifyArray.push({...removed, order: endOrder})
         }
+
         // console.log(startOrder)
         // console.log(endOrder)
         // console.log(toDosModifyArray)

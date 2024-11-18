@@ -89,7 +89,7 @@ const ModalUpdate = ({ modalTitle, handleSubmit, toDoInformation, readonly }: Pr
                             step={0.01}
                             name="cost"
                             readOnly={readonly}
-                            value={Number(toDoStream.cost).toFixed(2)}
+                            value={toDoStream.cost}
                             onChange={(e) => setToDoStream({...toDoStream , cost: e.target.value})}
                             placeholder="Insira o custo da tarefa"
                             className="border border-indigo-200 rounded-lg px-2 text-center font-normal"

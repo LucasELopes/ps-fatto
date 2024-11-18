@@ -60,7 +60,7 @@ const Skeleton = ({children}: Props) => {
             await updateToDo(formData, id)
             window.location.reload()
         } catch (error) {
-            toast.error('Não foi possível criar a tarefa!', optionsToast)
+            toast.error('Não foi possível editar a tarefa!', optionsToast)
         }
         finally {
             setIsOpen(false)

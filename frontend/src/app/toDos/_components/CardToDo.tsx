@@ -3,6 +3,7 @@ import { toDoType } from "@/types/toDo";
 import Image from "next/image";
 import { useContext } from "react";
 import { Draggable } from "@hello-pangea/dnd";
+import { todo } from "node:test";
 
 type props = {
     toDo: toDoType
@@ -19,6 +20,8 @@ const CardToDo = ({toDo, index}: props) => {
     const day = weekInMs/7
 
     const {isOpen, setIsOpen, setTitleModal, setToDoInformation, setReadOnly, setIsOpenDelete, setKeyToDoDelete} = useHandleModalContext()
+
+    const cost = toDo.cost.split('.')
 
     return (
         <Draggable draggableId={toDo.id} index={index}>
@@ -61,7 +64,7 @@ const CardToDo = ({toDo, index}: props) => {
                             Custo
                         </div>
                         <div className="overflow-hidden text-nowrap text-center font-medium">
-                            R$ {Number(toDo.cost).toFixed(2).replace('.', ',')}
+                            R$ {cost[0]}{cost[1] ? '.'+cost[1] : '.00'  }
                         </div>
                     </div>
                     <div className="col-span-12 md:col-span-3 my-1 md:my-0">
