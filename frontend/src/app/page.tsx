@@ -29,6 +29,7 @@ export default function Home() {
     else if(keyTodo) {
       searchToDo(keyTodo).then((data) => {data && setToDos(data)}).finally(() => setLoading(false))
     }
+    
   },[keyTodo]) 
 
   if(loading) {

@@ -31,6 +31,7 @@ const Header = () => {
                         text-xl md:text-3xl italic text-purple-50
                         col-span-6 text-center hover:scale-110 
                         hover:text-purple-200 duration-300 font-bold
+                        hover:rotate-2
                     "
                 >
                     PRONTO!

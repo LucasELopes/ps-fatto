@@ -144,7 +144,7 @@ class ToDoController extends Controller
     {
         $toDo = $this->toDo->where('id', $id)
             ->orWhere('name','LIKE' ,"{$id}%")
-            ->get();
+            ->orderBy('order')->get();
 
         if(!$toDo) {
             return response()->json(null, Response::HTTP_NOT_FOUND);

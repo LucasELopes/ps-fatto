@@ -34,34 +34,31 @@ const ListToDos = ({toDosProps}: Props) => {
         const result = Array.from(list)
         const [removed] = result.splice(startIndex, 1)
         
-        let orderRemoved = removed.order
+        let endOrder = list[endIndex].order
 
         let toDosModifyArray:toDoType[] = [];
         
         if(startIndex <= endIndex) {
-            for(let i = startIndex+1; i <= endIndex; i++) {
+            for(let i = startIndex; i <= endIndex; i++) {
                 
-                list[i].order -= 1
-                toDosModifyArray.push(list[i])
-                
-                if(i == endIndex) {
-                    removed.order = endIndex+1
-                    toDosModifyArray.push(removed)
+                if(i !== endIndex) {
+                    toDosModifyArray.push({...list[i+1], order: list[i].order})
+                }
+                else{
+                    toDosModifyArray.push({...removed, order: endOrder})
                 }
             }
         }
         else {            
             for(let i = endIndex; i < startIndex; i++) {
-                list[i].order += 1
-                toDosModifyArray.push(list[i])
-
-                if(i+1 == startIndex) {
-                    removed.order = endIndex+1
-                    toDosModifyArray.push(removed)
-                }
-
+                toDosModifyArray.push({...list[i], order: list[i+1].order})
             }
+            toDosModifyArray.push({...removed, order: endOrder})
         }
+        // console.log(startOrder)
+        // console.log(endOrder)
+        // console.log(toDosModifyArray)
+        // console.log(list)
 
         setToDosModify(toDosModifyArray)
         result.splice(endIndex, 0, removed)
@@ -74,6 +71,8 @@ const ListToDos = ({toDosProps}: Props) => {
             return 
         }
 
+        console.log(result.source.index)
+        console.log(result.destination.index)
         const items = reorder(toDos, result.source.index, result.destination.index)
         setToDos(items)
     }
