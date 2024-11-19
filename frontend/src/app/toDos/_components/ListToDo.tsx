@@ -20,10 +20,11 @@ const ListToDos = ({toDosProps}: Props) => {
 
     useEffect(() => {
         if (toDosModify && toDosModify.length > 0) {
-            toDosModify.map((toDo) => {
+            toDosModify.map(async (toDo) => {
                 const formData = new FormData();
                 formData.append('order', String(toDo.order));
-                updateToDo(formData, toDo.id);
+                await updateToDo(formData, toDo.id);
+                await allToDo().then((data) => setToDos(data))
             });
             setToDosModify([])
         }
@@ -33,11 +34,12 @@ const ListToDos = ({toDosProps}: Props) => {
 
         const result = Array.from(list)
         const [removed] = result.splice(startIndex, 1)
-        
+
+        let startOrder = removed.order
         let endOrder = list[endIndex].order
 
         let toDosModifyArray:toDoType[] = [];
-        
+
         if(startIndex <= endIndex) {
             for(let i = startIndex; i <= endIndex; i++) {
                 
@@ -56,10 +58,11 @@ const ListToDos = ({toDosProps}: Props) => {
             toDosModifyArray.push({...removed, order: endOrder})
         }
 
-        // console.log(startOrder)
-        // console.log(endOrder)
-        // console.log(toDosModifyArray)
-        // console.log(list)
+        console.log(startOrder)
+        console.log(endOrder)
+        console.log(list)
+        console.log(result)
+        console.log(toDosModifyArray)
 
         setToDosModify(toDosModifyArray)
         result.splice(endIndex, 0, removed)

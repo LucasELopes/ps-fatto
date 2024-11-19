@@ -1,11 +1,13 @@
 "use server"
 
-import axios, { AxiosResponse } from "axios" 
+import axios, { AxiosError, AxiosResponse } from "axios" 
 import { deadLineType } from "@/types/deadLine"
 import { toDoType } from "@/types/toDo"
 import { api } from "@/utils/api"
 import { costsToDosMonthType } from "@/types/costsTodosMonth"
 import { costsToDosType } from "@/types/costsTodos"
+import { headers } from "next/headers"
+import { error } from "console"
 
 export async function allToDo(): Promise<toDoType[]> {
     const res = await api.get('/toDos')
@@ -52,19 +54,36 @@ export async function searchToDo(param: string | number): Promise<toDoType[]|nul
 }
 
 export async function storeToDo(form: FormData) {
-    const resp = await api.post('/toDos', form)
-    return resp.data
+    try {
+        const resp = await api.post('/toDos', form)
+        return resp.data
+    } catch (error) {
+        if(error instanceof AxiosError) {
+            if(error.status == 422) {
+                throw new Error('Nome da tarefa já existe!')
+            }
+            else {
+                throw new Error('Não foi possível criar a tarefa!')
+            }
+        }        
+    }
 }
 
 export async function updateToDo(form: FormData, id: string | number) {
-    // try {
+    try {
         form.append('_method', 'PUT')
         const resp = await api.post(`/toDos/${id}`, form);
         return resp.data;
-    // } catch (error) {
-    //     console.error("Erro na atualização da tarefa:", error);
-    //     throw error;
-    // }
+    } catch (error) {
+        if(error instanceof AxiosError) {
+            if(error.status == 422) {
+                throw new Error('Nome da tarefa já existe!')
+            }
+            else {
+                throw new Error('Não foi possível atualizar a tarefa!')
+            }
+        } 
+    }
 }
 
 

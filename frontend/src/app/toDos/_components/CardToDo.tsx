@@ -35,11 +35,9 @@ const CardToDo = ({toDo, index}: props) => {
             >
                 <div className="col-span-3">
                 </div>
-                <div className="flex items-center justify-end">
-                </div>
                 <div className={`
                     ${Number(toDo.cost) < 1000 ? 'bg-indigo-100' : 'bg-indigo-200'} 
-                    col-span-5 max-w-[1280px] m-auto md:rounded-xl p-2 grid grid-cols-12 outline-2 hover:outline-indigo-400 hover:outline
+                    col-span-6 max-w-[1280px] m-auto md:rounded-xl p-2 grid grid-cols-12 outline-2 hover:outline-indigo-400 hover:outline
                     shadow-lg hover:scale-110 transition-all duration-300 py-4 relative w-full
                     `}>
                     <div className={`
@@ -63,7 +61,7 @@ const CardToDo = ({toDo, index}: props) => {
                         <div className="text-sm text-gray-500 text-ellipsis font-bold">
                             Custo
                         </div>
-                        <div className="overflow-hidden text-nowrap text-center font-medium">
+                        <div className="overflow-hidden text-nowrap text-center text-ellipsis font-medium w-11/12">
                             R$ {cost[0]}{cost[1] ? '.'+cost[1] : '.00'  }
                         </div>
                     </div>

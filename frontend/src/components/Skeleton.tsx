@@ -40,12 +40,11 @@ const Skeleton = ({children}: Props) => {
         e.preventDefault()
         const formData = new FormData(e.currentTarget);
         try {
-            await storeToDo(formData).then((data) => console.log(data))
+            await storeToDo(formData)
             setIsOpen(false)
             window.location.reload()
-        } catch (error) {
-            toast.error('Não foi possível criar a tarefa!', optionsToast)
-            setIsOpen(false)
+        } catch (error:any) {
+            toast.error(error.message, optionsToast)
         }
     }
 
@@ -53,17 +52,15 @@ const Skeleton = ({children}: Props) => {
         e.preventDefault()
         const formData = new FormData(e.currentTarget)
         try {
-            
             if(formData.get('name') === toDoInformation?.name) {
                 formData.delete('name')
             }
             await updateToDo(formData, id)
-            window.location.reload()
-        } catch (error) {
-            toast.error('Não foi possível editar a tarefa!', optionsToast)
-        }
-        finally {
             setIsOpen(false)
+            setToDoInformation(null)
+            window.location.reload()
+        } catch (error:any) {
+            toast.error(error.message, optionsToast)
         }
     }
 

@@ -48,7 +48,7 @@ const ModalUpdate = ({ modalTitle, handleSubmit, toDoInformation, readonly }: Pr
                 <div>
                     <h2 className="font-bold text-indigo-400 text-3xl">{modalTitle}</h2>
                 </div>
-                <form method="post" onSubmit={async (e) => {handleSubmit(e, toDoStream?.id || ''); setToDoInformation(null)}} className="w-11/12 h-5/6 m-auto my-1 flex flex-col justify-around gap-5">
+                <form method="post" onSubmit={async (e) => {handleSubmit(e, toDoStream?.id || '');}} className="w-11/12 h-5/6 m-auto my-1 flex flex-col justify-around gap-5">
                     <label htmlFor="name" className="flex flex-col text-gray-400 font-bold">
                         {modalTitle === 'Visualizar Tarefa' &&
                             <div>

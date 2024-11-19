@@ -134,7 +134,7 @@ class ToDoController extends Controller
         $data['order'] = time();
         $toDo = $this->toDo->create($data);
 
-        return response()->json(ToDoResource::make($toDo), Response::HTTP_CREATED);
+        return response()->json(ToDoResource::make($toDo), Response::HTTP_OK);
     }
 
     /**
