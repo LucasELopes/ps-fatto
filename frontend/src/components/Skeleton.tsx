@@ -42,7 +42,7 @@ const Skeleton = ({children}: Props) => {
             setIsOpen(false)
             window.location.reload()
         } catch (error:any) {
-            toast.error(error.message, optionsToast)
+            toast.error(JSON.stringify(error.message), optionsToast)
         }
     }
 
@@ -58,7 +58,7 @@ const Skeleton = ({children}: Props) => {
             setToDoInformation(null)
             window.location.reload()
         } catch (error:any) {
-            toast.error(error.message, optionsToast)
+            toast.error(JSON.stringify(error.message), optionsToast)
         }
     }
 
