@@ -55,17 +55,19 @@ export async function searchToDo(param: string | number): Promise<toDoType[]|nul
 
 export async function storeToDo(form: FormData) {
     try {
-        const resp = await api.post('/toDos', form)
-        return resp.data
+        const resp = await api.post('/toDos', form);
+        return resp.data;
     } catch (error) {
-        if(error instanceof AxiosError) {
-            if(error.status == 422) {
-                throw new Error('Nome da tarefa já existe!')
+        if (axios.isAxiosError(error)) {
+            if (Number(error.response?.status) >= 400) {
+                 const errorMessage = error.response?.data.message || 'Erro na validação'
+                throw new Error(errorMessage);
+            } else {
+                throw new Error('Não foi possível criar a tarefa!');
             }
-            else {
-                throw new Error('Não foi possível criar a tarefa!')
-            }
-        }        
+        } else {
+            throw new Error('Erro inesperado!');
+        }
     }
 }
 
@@ -75,14 +77,17 @@ export async function updateToDo(form: FormData, id: string | number) {
         const resp = await api.post(`/toDos/${id}`, form);
         return resp.data;
     } catch (error) {
-        if(error instanceof AxiosError) {
-            if(error.status == 422) {
-                throw new Error('Nome da tarefa já existe!')
+        if(axios.isAxiosError(error)) {
+            if(Number(error.response?.status) > 400) {
+                const errorMessage = error.response?.data.message || 'Erro na validação' 
+                throw new Error(errorMessage)
             }
             else {
                 throw new Error('Não foi possível atualizar a tarefa!')
             }
-        } 
+        }else {
+            throw new Error('Erro inesperado!');
+        }
     }
 }
 

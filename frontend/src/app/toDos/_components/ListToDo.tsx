@@ -2,12 +2,8 @@ import { allToDo, searchToDo, updateToDo } from "@/actions/toDo";
 import { toDoType } from "@/types/toDo";
 import { useEffect, useState } from "react";
 import CardToDo from "./CardToDo";
-import { useSearchToDoContext } from "@/app/contexts/SearchToDoContext";
-import Link from "next/link";
-import Loading from "@/components/Loading";
 import {DragDropContext, Droppable} from '@hello-pangea/dnd'
-import { todo } from "node:test";
-import { api } from "@/utils/api";
+
 
 type Props = {
     toDosProps: toDoType[]
@@ -58,11 +54,11 @@ const ListToDos = ({toDosProps}: Props) => {
             toDosModifyArray.push({...removed, order: endOrder})
         }
 
-        console.log(startOrder)
-        console.log(endOrder)
-        console.log(list)
-        console.log(result)
-        console.log(toDosModifyArray)
+        // console.log(startOrder)
+        // console.log(endOrder)
+        // console.log(list)
+        // console.log(result)
+        // console.log(toDosModifyArray)
 
         setToDosModify(toDosModifyArray)
         result.splice(endIndex, 0, removed)

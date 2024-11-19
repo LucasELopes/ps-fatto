@@ -1,11 +1,10 @@
 "use client"
 
-import { createContext, ReactNode, useContext, useEffect, useState } from "react";
+import { ReactNode, useState } from "react";
 import Header from "./Header";
 import SideBar from "./SideBar";
-import Charts from "./ChartPie";
 import { toDoType } from "@/types/toDo";
-import { searchToDo, storeToDo, updateToDo } from "@/actions/toDo";
+import { storeToDo, updateToDo } from "@/actions/toDo";
 import Modal from "./Modal";
 import { HandleModalContext } from "@/app/contexts/HandleModalContext";
 import { SearchToDoContext } from "@/app/contexts/SearchToDoContext";
@@ -13,7 +12,6 @@ import ModalDelete from "./ModalDelete";
 import ModalUpdate from "./ModalUpdate";
 import {ToastContainer, ToastOptions, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { setTimeout } from "timers/promises";
 
 type Props = {
     children?: ReactNode;
@@ -98,7 +96,7 @@ const Skeleton = ({children}: Props) => {
                                         <ModalDelete id={keyToDoDelete}/>
                                     }
                                     {children}
-                                    <ToastContainer autoClose={3500}/>
+                                    <ToastContainer autoClose={3500} limit={2} draggablePercent={90}/>
                                 </div>
                         </div>      
                 </div>
