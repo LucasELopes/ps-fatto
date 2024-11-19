@@ -74,7 +74,7 @@ export async function updateToDo(form: FormData, id: string | number) {
     try {
         form.append('_method', 'PUT')
         const resp = await api.post(`/toDos/${id}`, form);
-        return resp.data;
+        return {sucess: true, message: resp.data};
     } catch (error) {
         if(axios.isAxiosError(error)) {
             if(Number(error.response?.status) > 400) {

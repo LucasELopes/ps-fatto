@@ -52,6 +52,9 @@ const Skeleton = ({children}: Props) => {
     const handleSubmitUpdateToDo = async(e: React.FormEvent<HTMLFormElement>, id: number|string) => {
         e.preventDefault()
         const formData = new FormData(e.currentTarget)
+        if(formData.get('name') === toDoInformation?.name) {
+            formData.delete('name')
+        }
         await updateToDo(formData, id).then(
             (data) => {
                 if(data.sucess) {
