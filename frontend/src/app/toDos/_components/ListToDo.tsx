@@ -20,10 +20,10 @@ const ListToDos = ({toDosProps}: Props) => {
                 const formData = new FormData();
                 formData.append('order', String(toDo.order));
                 await updateToDo(formData, toDo.id);
-                await allToDo().then((data) => setToDos(data))
             });
             setToDosModify([])
         }
+        allToDo().then((data) => setToDos(data))
     }, [toDosModify])
 
     function reorder(list:toDoType[], startIndex: number, endIndex: number) {
