@@ -37,29 +37,32 @@ const Skeleton = ({children}: Props) => {
     const handleSubmitToDo = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         const formData = new FormData(e.currentTarget);
-        try {
-            await storeToDo(formData)
-            setIsOpen(false)
-            window.location.reload()
-        } catch (error:any) {
-            toast.error(JSON.stringify(error.message), optionsToast)
-        }
+        await storeToDo(formData).then(
+            (data) => {
+                if(data.sucess) {
+                    setIsOpen(false)
+                    window.location.reload()
+                }
+                else {
+                    toast.error(data.message, optionsToast)
+                }
+        })
     }
 
     const handleSubmitUpdateToDo = async(e: React.FormEvent<HTMLFormElement>, id: number|string) => {
         e.preventDefault()
         const formData = new FormData(e.currentTarget)
-        try {
-            if(formData.get('name') === toDoInformation?.name) {
-                formData.delete('name')
-            }
-            await updateToDo(formData, id)
-            setIsOpen(false)
-            setToDoInformation(null)
-            window.location.reload()
-        } catch (error:any) {
-            toast.error(JSON.stringify(error.message), optionsToast)
-        }
+        await updateToDo(formData, id).then(
+            (data) => {
+                if(data.sucess) {
+                    setIsOpen(false)
+                    setToDoInformation(null)
+                    window.location.reload()
+                }
+                else {
+                    toast.error(data.message, optionsToast)
+                }
+        })
     }
 
     return (

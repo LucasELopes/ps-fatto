@@ -8,6 +8,7 @@ import { costsToDosMonthType } from "@/types/costsTodosMonth"
 import { costsToDosType } from "@/types/costsTodos"
 import { headers } from "next/headers"
 import { error } from "console"
+import { ResponseToDo } from "@/types/response"
 
 export async function allToDo(): Promise<toDoType[]> {
     const res = await api.get('/toDos')
@@ -56,18 +57,16 @@ export async function searchToDo(param: string | number): Promise<toDoType[]|nul
 export async function storeToDo(form: FormData) {
     try {
         const resp = await api.post('/toDos', form);
-        return resp.data;
+        return {sucess: true, message: resp.data};
     } catch (error) {
         if (axios.isAxiosError(error)) {
             if (Number(error.response?.status) >= 400) {
-                 const errorMessage = error.response?.data.message || 'Erro na validação'
-                throw new Error(errorMessage);
+                return {sucess:false, message: error.response?.data.message || 'Erro na validação'}
             } else {
-                throw new Error('Não foi possível criar a tarefa!');
+                return {sucess:false, message: 'Não foi possível criar a tarefa!'}
             }
-        } else {
-            throw new Error('Erro inesperado!');
         }
+        return {sucess:false, message: 'Erro inesperado!'}
     }
 }
 
@@ -79,15 +78,13 @@ export async function updateToDo(form: FormData, id: string | number) {
     } catch (error) {
         if(axios.isAxiosError(error)) {
             if(Number(error.response?.status) > 400) {
-                const errorMessage = error.response?.data.message || 'Erro na validação' 
-                throw new Error(errorMessage)
+                return {sucess:false, message: error.response?.data.message || 'Erro na validação'}
             }
             else {
-                throw new Error('Não foi possível atualizar a tarefa!')
+                return {sucess:false, message: 'Não foi possível criar a tarefa!'}
             }
-        }else {
-            throw new Error('Erro inesperado!');
         }
+        return {sucess:false, message: 'Erro inesperado!'}
     }
 }
 
