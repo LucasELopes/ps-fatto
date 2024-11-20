@@ -25,6 +25,15 @@ const ModalUpdate = ({ modalTitle, handleSubmit, toDoInformation, readonly }: Pr
         due_date: toDoInformation?.due_date ? new Date(toDoInformation.due_date) : new Date(currentDate),
     });
 
+    const isValidDate = (dateString: string) => {
+        const date = new Date(dateString)
+
+        if(!isNaN(date.getTime())) {
+            setToDoStream({...toDoStream, due_date: new Date(date)})
+        }
+        
+    }
+
     return (
         <div className="bg-gray-400 bg-opacity-55 w-screen h-screen fixed top-0 left-0 flex justify-center items-center z-50">
             <dialog open 
@@ -110,7 +119,7 @@ const ModalUpdate = ({ modalTitle, handleSubmit, toDoInformation, readonly }: Pr
                                     .getTime() + 86400000 
                                     : new Date().getTime() + 86400000)
                                 }
-                            onChange={(e) => setToDoStream({...toDoStream, due_date: new Date(e.target.value)})}
+                            onChange={(e) => isValidDate(e.target.value)}
                             placeholder="Insira o nome da tarefa"
                             className="border border-indigo-200 rounded-lg px-2 text-center font-normal"
                             required
